@@ -1,0 +1,4 @@
+interface:
+  display_name: "Requirements Clarification"
+  short_description: "Clarify ideas into testable requirements"
+  default_prompt: "Use $requirements-clarification to turn our discussion into a testable requirements draft."
