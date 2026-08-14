@@ -11,10 +11,22 @@ permissions:
 jobs:
   validate:
     runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
     steps:
-      - uses: actions/checkout@v6
-      - uses: actions/setup-python@v5
+      # actions/checkout v7, pinned to an immutable commit.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      # actions/setup-python v7, pinned to an immutable commit.
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
         with:
           python-version: "3.12"
       - name: Validate repository structure
         run: python3 tests/test_repository_structure.py
+      - name: Test repository vulnerability discovery
+        run: python3 tests/test_repository_vulnerability_discovery.py
+      - name: Test repository vulnerability normalization
+        run: python3 tests/test_repository_vulnerability_normalization.py
+      - name: Test current-repository vulnerability audit runner
+        run: python3 tests/test_repository_vulnerability_audit_runner.py
+      - name: Test repository vulnerability summary
+        run: python3 tests/test_repository_vulnerability_summary.py
