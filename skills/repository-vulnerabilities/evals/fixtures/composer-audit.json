@@ -1,0 +1,31 @@
+{
+  "fixture_notice": "Fictional Composer audit output for evaluation only.",
+  "advisories": {
+    "fictional/router": [
+      {
+        "advisoryId": "PKSA-fictional-router",
+        "packageName": "fictional/router",
+        "affectedVersions": ">=1.0,<1.5.0",
+        "title": "Fictional route parsing vulnerability",
+        "cve": "CVE-2099-1001",
+        "link": "https://example.invalid/advisories/PKSA-fictional-router",
+        "reportedAt": "2099-01-02T00:00:00+00:00",
+        "severity": "high"
+      }
+    ]
+  },
+  "ignored-advisories": {
+    "fictional/test-helper": [
+      {
+        "advisoryId": "PKSA-fictional-helper",
+        "packageName": "fictional/test-helper",
+        "affectedVersions": "<1.0.0",
+        "title": "Fictional test helper advisory",
+        "link": "https://example.invalid/advisories/PKSA-fictional-helper",
+        "reportedAt": "2099-01-03T00:00:00+00:00",
+        "severity": "medium"
+      }
+    ]
+  },
+  "abandoned": {"fictional/old-library": null}
+}

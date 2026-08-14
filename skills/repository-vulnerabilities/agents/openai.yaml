@@ -1,0 +1,4 @@
+interface:
+  display_name: "Repository Vulnerabilities"
+  short_description: "Audit Composer and npm dependencies"
+  default_prompt: "Use $repository-vulnerabilities to scan the current codebase without installing or updating dependencies."

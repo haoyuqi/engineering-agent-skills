@@ -1,0 +1,18 @@
+schema_version: 1
+# This file configures an Agent's review policy. The bundled runner deliberately
+# accepts only its documented CLI arguments; it never reads this file silently.
+agent_policy:
+  scan_roots: [.] # pass each approved root with --root
+  exclude_directories: [.git, .agents, .claude, .codex, vendor, node_modules]
+  ecosystems: [composer, npm] # pass with repeated --ecosystem
+  advisory_sources: [ecosystem-native, osv, vendor]
+network_policy:
+  allowed_registry_origins: [] # pass each confirmed origin with --allow-registry-origin
+  reject_dynamic_registry_configuration: true
+  reject_project_credential_configuration: true
+  remove_proxy_environment: true
+safety:
+  read_only: true
+  redact_secret_values: true
+  require_confirmation_for_remediation: true
+  forbid_audit_fix: true

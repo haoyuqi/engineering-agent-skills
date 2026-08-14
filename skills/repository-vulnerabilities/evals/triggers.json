@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "skill_name": "repository-vulnerabilities",
+  "fixture_notice": "All organizations, packages, registries, versions, and scenarios are fictional.",
+  "cases": [
+    {"id": 1, "query": "Scan the current monorepo for known vulnerabilities in every Composer and npm lockfile. Do not install or update anything.", "should_trigger": true, "reason": "This is the primary multi-ecosystem lockfile audit workflow."},
+    {"id": 2, "query": "npm audit flagged map-parser, but I think package-lock.json contains a patched version. Verify whether this is a false positive.", "should_trigger": true, "reason": "The Skill verifies scanner findings against resolved versions and authoritative ranges."},
+    {"id": 3, "query": "Find all nested package-lock.json files outside node_modules and tell me which projects could not be audited.", "should_trigger": true, "reason": "Deterministic monorepo discovery and coverage accounting are core behavior."},
+    {"id": 4, "query": "Audit both packages and packages-dev in composer.lock and distinguish advisories from abandoned-package warnings.", "should_trigger": true, "reason": "Composer lockfile and output-category interpretation are supported."},
+    {"id": 5, "query": "Before running npm audit, check where scoped private package metadata would be sent and stop if the registry is unclear.", "should_trigger": true, "reason": "Registry metadata privacy is an explicit audit gate."},
+    {"id": 6, "query": "Composer is missing on this machine but npm is available. Scan what you can and account for the unverified project.", "should_trigger": true, "reason": "Independent ecosystem failure must produce a partial, bounded result."},
+    {"id": 7, "query": "检查当前仓库的 composer.lock 和 package-lock.json，确认实际锁定版本是否受已知漏洞影响。", "should_trigger": true, "reason": "The Chinese request directly asks for Composer/npm vulnerability verification."},
+    {"id": 8, "query": "npm audit 返回非零，但 JSON 能正常解析；请区分发现漏洞和工具执行失败。", "should_trigger": true, "reason": "Correct handling of finding exit codes is central to the workflow."},
+    {"id": 9, "query": "security check pls: this repo has PHP and Node apps, tell me affected locked versions and possible upgrade boundaries", "should_trigger": true, "reason": "Informal wording still identifies Composer/npm dependency security analysis."},
+    {"id": 10, "query": "A nested npm dependency is vulnerable but isn't listed directly in package.json. Trace the resolved version from the lockfile.", "should_trigger": true, "reason": "Nested lockfile version evidence is explicitly supported."},
+    {"id": 11, "query": "Scan the production container image for Alpine and OpenSSL CVEs.", "should_trigger": false, "reason": "Container and operating-system scanning are outside scope."},
+    {"id": 12, "query": "Run a SAST review for SQL injection and unsafe deserialization in the PHP source.", "should_trigger": false, "reason": "Source-code vulnerability analysis is outside this dependency-audit Skill."},
+    {"id": 13, "query": "Search the Git history for leaked API keys and private keys.", "should_trigger": false, "reason": "Secret scanning is explicitly outside scope."},
+    {"id": 14, "query": "Check requirements.txt and poetry.lock for vulnerable Python packages.", "should_trigger": false, "reason": "The current Skill supports Composer and npm only."},
+    {"id": 15, "query": "Upgrade all npm dependencies to the latest versions and rewrite package-lock.json.", "should_trigger": false, "reason": "Dependency maintenance and mutation are not a vulnerability scan."},
+    {"id": 16, "query": "List the licenses of every npm dependency and flag GPL packages.", "should_trigger": false, "reason": "License compliance is not known-vulnerability analysis."},
+    {"id": 17, "query": "审查 Dependabot PR 42 的代码改动是否安全。", "should_trigger": false, "reason": "Reviewing a dependency-update PR belongs to pr-mr-review."},
+    {"id": 18, "query": "扫描 Docker 镜像和 Kubernetes 节点中的系统漏洞。", "should_trigger": false, "reason": "Image and node CVEs are outside the Composer/npm boundary."},
+    {"id": 19, "query": "Find malicious code patterns in src/payment.php and produce exploit examples.", "should_trigger": false, "reason": "Malware/source analysis is not dependency advisory verification."},
+    {"id": 20, "query": "Which application version containing these packages is deployed to staging?", "should_trigger": false, "reason": "Deployed artifact lookup is outside Composer/npm advisory analysis."}
+  ]
+}
