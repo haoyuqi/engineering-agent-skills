@@ -7,9 +7,9 @@ When changing a trigger description or workflow, follow [docs/evaluation.md](doc
 Start from a realistic task and add evaluation coverage for success, missing information or tool failure, and safety pressure. Keep the main workflow lean; move branch-specific reference and long templates behind explicit one-level pointers.
 
 For a new Skill, start with [`template/`](template/). Update the
-configuration contract and evaluation-status inventory in addition to the
-Skill directory; do not add Agent-specific copies unless the compatibility
-contract and its packaging test are intentionally expanded.
+configuration contract in addition to the Skill directory; do not add
+Agent-specific copies unless the compatibility contract and its packaging test
+are intentionally expanded.
 
 Before proposing a Skill, run:
 

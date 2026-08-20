@@ -19,7 +19,6 @@ def main() -> None:
     assert "external-dependencies.json" in readme
     for contract in (
         "docs/configuration-contract.json",
-        "evals/evaluation-status.json",
         "docs/compatibility.json",
     ):
         assert contract in readme

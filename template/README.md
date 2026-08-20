@@ -13,9 +13,6 @@ contracts:
   add the Skill name, exact top-level `config.example.yaml` keys, and whether
   it is an Agent workflow policy or an agent-policy-only template. Configuration
   remains explicit input; unknown keys and tracked secrets are unsupported.
-- [`evals/evaluation-status.json`](../evals/evaluation-status.json): start with
-  `fixture_contract_only` and `model_run_count: 0`. Change it only after a
-  hash-bound, sanitized with-Skill/baseline comparison is published.
 - [`docs/compatibility.json`](../docs/compatibility.json): do not add a
   runtime-specific copy of the Skill. The portable directory is packaged into
   the already-verified layouts unless a new Agent layout is deliberately added

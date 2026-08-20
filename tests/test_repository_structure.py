@@ -25,7 +25,6 @@ REQUIRED_ROOT_FILES = (
     "docs/configuration-contract.json",
     "docs/evaluation.md",
     "docs/evaluation-result-format.md",
-    "docs/evaluation-status.md",
     "docs/external-sources.lock.json",
     "docs/privacy-review.md",
     "evals/README.md",
