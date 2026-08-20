@@ -1,0 +1,22 @@
+schema_version: 1
+language: auto
+provider: auto # auto | github | gitlab
+git:
+  remote: origin
+  allow_force_push: false
+  run_hooks: true
+commit:
+  convention: auto # auto | conventional | freeform
+  issue_key_pattern: "[A-Z][A-Z0-9]+-[0-9]+"
+  suffix: null
+change_request:
+  draft_by_default: true
+  target_branch: auto
+  labels: []
+  reviewers: []
+  assignees: []
+safety:
+  confirm_stage: true
+  confirm_commit: true
+  confirm_push: true
+  confirm_change_request: true

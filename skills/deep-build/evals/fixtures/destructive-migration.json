@@ -1,0 +1,1 @@
+{"fixture_notice":"Fictional destructive migration fixture for offline evaluation only.","requirement":{"id":"REQ-010","text":"Add export archive metadata."},"migration":{"operation":"drop populated column","rollback":"not supplied","destructive":true},"confirmation":false}

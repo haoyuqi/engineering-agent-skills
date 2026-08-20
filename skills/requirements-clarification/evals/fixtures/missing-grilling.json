@@ -1,0 +1,7 @@
+{
+  "fixture_notice": "Fictional unavailable external dependency fixture for offline evaluation only.",
+  "request": "Clarify a fictional retry queue.",
+  "mode": "grill_me",
+  "available_skills": ["mattpocock/skills:grill-me"],
+  "missing_skills": ["mattpocock/skills:grilling"]
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "skill_name": "deep-build",
+  "installation_note": "Dependencies are recommended enhancements, not prerequisites. The local Plan and review gates remain mandatory when they are unavailable.",
+  "dependencies": [
+    {"id": "addyosmani/agent-skills:planning-and-task-breakdown", "install": "npx skills add addyosmani/agent-skills --skill planning-and-task-breakdown", "source_url": "https://github.com/addyosmani/agent-skills", "when": "Writing a substantial Plan", "fallback": "Use the Plan record format in SKILL.md."},
+    {"id": "addyosmani/agent-skills:incremental-implementation", "install": "npx skills add addyosmani/agent-skills --skill incremental-implementation", "source_url": "https://github.com/addyosmani/agent-skills", "when": "Implementing multi-file slices", "fallback": "Use the slice rules in SKILL.md."},
+    {"id": "addyosmani/agent-skills:test-driven-development", "install": "npx skills add addyosmani/agent-skills --skill test-driven-development", "source_url": "https://github.com/addyosmani/agent-skills", "when": "Changing behavior or fixing a defect", "fallback": "Create an observable verification signal before code where practical."},
+    {"id": "addyosmani/agent-skills:debugging-and-error-recovery", "install": "npx skills add addyosmani/agent-skills --skill debugging-and-error-recovery", "source_url": "https://github.com/addyosmani/agent-skills", "when": "A check, build, or behavior fails", "fallback": "Preserve evidence, find the root cause, add a guard, then resume."},
+    {"id": "addyosmani/agent-skills:code-review-and-quality", "install": "npx skills add addyosmani/agent-skills --skill code-review-and-quality", "source_url": "https://github.com/addyosmani/agent-skills", "when": "Every final code review", "fallback": "Apply the five-axis baseline in references/review-criteria.md."},
+    {"id": "addyosmani/agent-skills:security-and-hardening", "install": "npx skills add addyosmani/agent-skills --skill security-and-hardening", "source_url": "https://github.com/addyosmani/agent-skills", "when": "The diff triggers security review", "fallback": "Apply the security trigger checklist."},
+    {"id": "addyosmani/agent-skills:performance-optimization", "install": "npx skills add addyosmani/agent-skills --skill performance-optimization", "source_url": "https://github.com/addyosmani/agent-skills", "when": "The diff triggers performance review", "fallback": "Require measurement and a bounded-data review."},
+    {"id": "addyosmani/agent-skills:code-simplification", "install": "npx skills add addyosmani/agent-skills --skill code-simplification", "source_url": "https://github.com/addyosmani/agent-skills", "when": "The diff is a large or refactoring-oriented change", "fallback": "Review complexity, duplication, and scope."},
+    {"id": "Jeffallan/claude-skills:postgres-pro", "install": "npx skills add Jeffallan/claude-skills --skill postgres-pro", "source_url": "https://github.com/Jeffallan/claude-skills", "when": "PostgreSQL queries, indexes, JSONB, or migration performance change", "fallback": "Require rollback and evidence-based query/index verification."}
+  ]
+}

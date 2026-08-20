@@ -1,0 +1,8 @@
+{
+  "fixture_notice": "Fictional high-risk delivery fixture for offline evaluation only.",
+  "branch": "main",
+  "remote": "https://gitlab.com/example-org/example-repo.git",
+  "requested_operation": "force-push",
+  "requested_labels": ["release-ready"],
+  "available_labels": []
+}

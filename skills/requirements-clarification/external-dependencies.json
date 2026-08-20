@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "skill_name": "requirements-clarification",
+  "reviewed_on": "2026-08-13",
+  "dependencies": [
+    {
+      "id": "brainstorming",
+      "upstream_skill": "obra/superpowers:brainstorming",
+      "source_lock": "obra-superpowers",
+      "upstream_repository": "obra/superpowers",
+      "upstream_path": "skills/brainstorming",
+      "required_for_modes": ["brainstorming", "brainstorming_then_grill_me"],
+      "invocation": "agent_or_user",
+      "install": "npx skills@1.5.20 add obra/superpowers --skill brainstorming",
+      "success_handoff": "A design explicitly approved by the user.",
+      "failure_action": "Stop that mode; do not fabricate an approved design or requirements draft."
+    },
+    {
+      "id": "grill-me",
+      "upstream_skill": "mattpocock/skills:grill-me",
+      "source_lock": "mattpocock-skills",
+      "upstream_repository": "mattpocock/skills",
+      "upstream_path": "skills/productivity/grill-me",
+      "required_for_modes": ["grill_me", "brainstorming_then_grill_me"],
+      "invocation": "user_only_wrapper",
+      "requires": ["grilling"],
+      "install": "npx skills@1.5.20 add mattpocock/skills --skill grill-me --skill grilling",
+      "success_handoff": "A user-confirmed shared understanding after the decision tree is resolved.",
+      "failure_action": "Ask the user to invoke the wrapper directly when nested invocation is unavailable; never replace it locally."
+    },
+    {
+      "id": "grilling",
+      "upstream_skill": "mattpocock/skills:grilling",
+      "source_lock": "mattpocock-skills",
+      "upstream_repository": "mattpocock/skills",
+      "upstream_path": "skills/productivity/grilling",
+      "required_for_modes": ["grill_me", "brainstorming_then_grill_me"],
+      "invocation": "model_invokable_primitive",
+      "install": "npx skills@1.5.20 add mattpocock/skills --skill grilling",
+      "success_handoff": "The resolved decision tree used by the user-facing wrapper.",
+      "failure_action": "Treat the wrapper as unavailable; never invoke this primitive as a silent substitute."
+    }
+  ]
+}

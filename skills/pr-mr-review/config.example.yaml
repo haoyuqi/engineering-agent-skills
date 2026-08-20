@@ -1,0 +1,16 @@
+schema_version: 1
+language: auto
+providers:
+  source_control: auto # auto | github | gitlab | local
+  issue_tracker: auto # auto | jira | github | gitlab | document | none
+requirements:
+  acceptance_fields: []
+agents:
+  code_explorer: null
+  deep_reviewer: null
+safety:
+  read_only: true
+  require_confirmation_for_external_writes: true
+limits:
+  max_linked_issues: 10
+  large_diff_lines: 800

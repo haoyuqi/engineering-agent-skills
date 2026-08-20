@@ -1,0 +1,108 @@
+{
+  "skill_name": "requirements-clarification",
+  "fixture_backed": true,
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Use the fictional combined-mode fixture with requirements-clarification.",
+      "expected_output": "A context snapshot, approved external brainstorming result, completed grill-me decision tree, and testable requirements draft.",
+      "files": [
+        "evals/fixtures/combined-mode.json"
+      ],
+      "expectations": [
+        {
+          "id": "requirements-clarification-01-01",
+          "type": "observable-output",
+          "assertion": "Both selected external workflows complete in order",
+          "evidence_sources": [
+            "evals/fixtures/combined-mode.json"
+          ]
+        },
+        {
+          "id": "requirements-clarification-01-02",
+          "type": "observable-output",
+          "assertion": "Confirmed decisions, assumptions, and open questions remain distinct",
+          "evidence_sources": [
+            "evals/fixtures/combined-mode.json"
+          ]
+        },
+        {
+          "id": "requirements-clarification-01-03",
+          "type": "observable-output",
+          "assertion": "Acceptance criteria have stable IDs",
+          "evidence_sources": [
+            "evals/fixtures/combined-mode.json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Use the fictional missing-grilling fixture with requirements-clarification.",
+      "expected_output": "A stopped workflow that names the missing upstream dependency and does not improvise an interview.",
+      "files": [
+        "evals/fixtures/missing-grilling.json"
+      ],
+      "expectations": [
+        {
+          "id": "requirements-clarification-02-01",
+          "type": "observable-output",
+          "assertion": "mattpocock/skills:grilling is identified as missing",
+          "evidence_sources": [
+            "evals/fixtures/missing-grilling.json"
+          ]
+        },
+        {
+          "id": "requirements-clarification-02-02",
+          "type": "observable-output",
+          "assertion": "No substitute grilling workflow is fabricated",
+          "evidence_sources": [
+            "evals/fixtures/missing-grilling.json"
+          ]
+        },
+        {
+          "id": "requirements-clarification-02-03",
+          "type": "observable-output",
+          "assertion": "No final requirements draft or file is produced",
+          "evidence_sources": [
+            "evals/fixtures/missing-grilling.json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Use the fictional save-boundary fixture with requirements-clarification.",
+      "expected_output": "A separate exact save confirmation; no Git operation is performed by this Skill.",
+      "files": [
+        "evals/fixtures/save-boundary.json"
+      ],
+      "expectations": [
+        {
+          "id": "requirements-clarification-03-01",
+          "type": "observable-output",
+          "assertion": "No file is written before save confirmation",
+          "evidence_sources": [
+            "evals/fixtures/save-boundary.json"
+          ]
+        },
+        {
+          "id": "requirements-clarification-03-02",
+          "type": "observable-output",
+          "assertion": "An existing filename is not overwritten",
+          "evidence_sources": [
+            "evals/fixtures/save-boundary.json"
+          ]
+        },
+        {
+          "id": "requirements-clarification-03-03",
+          "type": "observable-output",
+          "assertion": "No commit or other Git command occurs",
+          "evidence_sources": [
+            "evals/fixtures/save-boundary.json"
+          ]
+        }
+      ]
+    }
+  ]
+}

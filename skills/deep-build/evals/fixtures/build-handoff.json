@@ -1,0 +1,1 @@
+{"fixture_notice":"Fictional completed-build fixture for offline evaluation only.","requirements":[{"id":"REQ-020","status":"covered"}],"verification":[{"name":"fictional targeted test","status":"passed"}],"worktree":{"changes":"uncommitted","git_delivery_requested":true}}
