@@ -22,6 +22,18 @@ jobs:
           python-version: "3.12"
       - name: Validate repository structure
         run: python3 tests/test_repository_structure.py
+      - name: Validate workflow action pins
+        run: python3 tests/test_workflow_supply_chain.py
+      - name: Validate cross-Agent compatibility contract
+        run: python3 tests/test_compatibility_contract.py
+      - name: Validate configuration contract
+        run: python3 tests/test_configuration_contract.py
+      - name: Scan public content
+        run: python3 tests/test_public_content.py
+      - name: Test public-content scan coverage
+        run: python3 tests/test_public_content_coverage.py
+      - name: Scan committed public-content history
+        run: python3 tests/test_public_content.py --history
       - name: Test repository vulnerability discovery
         run: python3 tests/test_repository_vulnerability_discovery.py
       - name: Test repository vulnerability normalization
@@ -30,3 +42,17 @@ jobs:
         run: python3 tests/test_repository_vulnerability_audit_runner.py
       - name: Test repository vulnerability summary
         run: python3 tests/test_repository_vulnerability_summary.py
+      - name: Validate core workflow evaluation fixtures
+        run: python3 tests/test_core_eval_fixtures.py
+      - name: Validate evaluation contracts
+        run: python3 tests/test_evaluation_contract.py
+      - name: Test evaluation result validator
+        run: python3 tests/test_evaluation_result_validator.py
+      - name: Validate external-Skill dependency contract and source locks
+        run: python3 tests/test_external_dependency_contract.py
+      - name: Validate new-Skill template quality
+        run: python3 tests/test_template_quality.py
+      - name: Verify Skill installer discovery
+        run: npx --yes skills@1.5.20 add . --list
+      - name: Verify representative Agent installation layouts
+        run: python3 tests/test_installer_compatibility.py
