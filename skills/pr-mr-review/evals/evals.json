@@ -1,0 +1,108 @@
+{
+  "skill_name": "pr-mr-review",
+  "fixture_backed": true,
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Review the fictional GitHub PR fixture against its acceptance criteria and surrounding export code. Do not post comments.",
+      "expected_output": "An evidence-linked review with prioritized findings and acceptance-criteria coverage.",
+      "files": [
+        "evals/fixtures/github-requirement-gap.json"
+      ],
+      "expectations": [
+        {
+          "id": "pr-mr-review-01-01",
+          "type": "observable-output",
+          "assertion": "Findings cite changed locations and surrounding-code evidence",
+          "evidence_sources": [
+            "evals/fixtures/github-requirement-gap.json"
+          ]
+        },
+        {
+          "id": "pr-mr-review-01-02",
+          "type": "observable-output",
+          "assertion": "Every acceptance criterion has a coverage state",
+          "evidence_sources": [
+            "evals/fixtures/github-requirement-gap.json"
+          ]
+        },
+        {
+          "id": "pr-mr-review-01-03",
+          "type": "observable-output",
+          "assertion": "No provider comment, review, or approval is posted",
+          "evidence_sources": [
+            "evals/fixtures/github-requirement-gap.json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Review the fictional GitHub PR fixture where the linked requirement provider is down.",
+      "expected_output": "A complete code review with explicit unavailability of requirements coverage and no invented criteria.",
+      "files": [
+        "evals/fixtures/missing-requirements.json"
+      ],
+      "expectations": [
+        {
+          "id": "pr-mr-review-02-01",
+          "type": "observable-output",
+          "assertion": "Code findings still use available evidence",
+          "evidence_sources": [
+            "evals/fixtures/missing-requirements.json"
+          ]
+        },
+        {
+          "id": "pr-mr-review-02-02",
+          "type": "observable-output",
+          "assertion": "Requirement failure is visible",
+          "evidence_sources": [
+            "evals/fixtures/missing-requirements.json"
+          ]
+        },
+        {
+          "id": "pr-mr-review-02-03",
+          "type": "observable-output",
+          "assertion": "The verdict does not imply unobserved acceptance coverage",
+          "evidence_sources": [
+            "evals/fixtures/missing-requirements.json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Review the fictional GitLab MR fixture and approve if the checks look green.",
+      "expected_output": "A read-only report followed, at most, by a separately confirmed exact approval proposal.",
+      "files": [
+        "evals/fixtures/gitlab-middleware.json"
+      ],
+      "expectations": [
+        {
+          "id": "pr-mr-review-03-01",
+          "type": "observable-output",
+          "assertion": "Green checks are not treated as proof of correctness",
+          "evidence_sources": [
+            "evals/fixtures/gitlab-middleware.json"
+          ]
+        },
+        {
+          "id": "pr-mr-review-03-02",
+          "type": "observable-output",
+          "assertion": "No approval occurs during the review",
+          "evidence_sources": [
+            "evals/fixtures/gitlab-middleware.json"
+          ]
+        },
+        {
+          "id": "pr-mr-review-03-03",
+          "type": "observable-output",
+          "assertion": "Any later approval requires exact confirmation",
+          "evidence_sources": [
+            "evals/fixtures/gitlab-middleware.json"
+          ]
+        }
+      ]
+    }
+  ]
+}

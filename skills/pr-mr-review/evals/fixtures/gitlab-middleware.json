@@ -1,0 +1,8 @@
+{
+  "fixture_notice": "Fictional GitLab merge-request fixture for offline evaluation only.",
+  "provider": "gitlab",
+  "merge_request": {"iid": 17, "base_sha": "base-example-300", "head_sha": "head-example-400", "checks": []},
+  "acceptance_criteria": [{"id": "AC-002", "text": "Request payloads must be validated."}],
+  "changed_files": [{"path": "src/handler.py", "patch": "def handle(payload):\n    return service.run(payload)"}],
+  "surrounding_evidence": [{"path": "src/middleware.py", "excerpt": "validated_payload = validate_schema(payload)"}]
+}

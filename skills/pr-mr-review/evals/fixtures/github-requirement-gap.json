@@ -1,0 +1,8 @@
+{
+  "fixture_notice": "Fictional GitHub pull-request fixture for offline evaluation only.",
+  "provider": "github",
+  "pull_request": {"number": 42, "base_sha": "base-example-100", "head_sha": "head-example-200", "checks": [{"name": "unit", "status": "success"}]},
+  "acceptance_criteria": [{"id": "AC-001", "text": "Exports must reject requests outside the caller tenant."}],
+  "changed_files": [{"path": "src/export.py", "patch": "def export_rows(request):\n    return repository.list_rows()"}],
+  "surrounding_evidence": [{"path": "src/repository.py", "excerpt": "def list_rows(): return all_rows"}]
+}

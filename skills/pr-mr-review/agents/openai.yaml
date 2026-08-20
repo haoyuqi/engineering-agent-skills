@@ -1,0 +1,4 @@
+interface:
+  display_name: "PR/MR Review"
+  short_description: "Review changes against requirements and code"
+  default_prompt: "Use $pr-mr-review to review this PR or MR without posting comments or approvals."

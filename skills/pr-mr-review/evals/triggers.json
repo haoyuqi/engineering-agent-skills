@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "skill_name": "pr-mr-review",
+  "fixture_notice": "All organizations, repositories, issue keys, and scenarios are fictional.",
+  "cases": [
+    {"id": 1, "query": "Review GitHub pull request 42 in octo-org/parcel-api against the linked NORTH-218 acceptance criteria. Keep the provider read-only.", "should_trigger": true, "reason": "A remote PR and requirement-coverage review are the primary workflow."},
+    {"id": 2, "query": "Can you review GitLab MR !73? Pin the head SHA, inspect surrounding authorization code, and tell me only concrete defects.", "should_trigger": true, "reason": "This is a GitLab change review with immutable revision evidence."},
+    {"id": 3, "query": "Review my unstaged local diff for regressions and missing tests; don't edit anything yet.", "should_trigger": true, "reason": "The Skill explicitly supports read-only local diff review."},
+    {"id": 4, "query": "Compare everything changed since tag v2.4.0 with HEAD and review the behavioral impact before I open a PR.", "should_trigger": true, "reason": "A fixed-point-to-HEAD review is supported even without a remote PR."},
+    {"id": 5, "query": "Take a hard look at the tenant authorization changes in this PR. Trace callers and error paths, not just the patch.", "should_trigger": true, "reason": "The request needs surrounding-code review of a change set."},
+    {"id": 6, "query": "The remote diff is truncated. Review what can be verified and clearly list what remains uncovered.", "should_trigger": true, "reason": "Partial-provider evidence is an explicit degraded review case."},
+    {"id": 7, "query": "审查这个 GitHub PR，并逐条核对 Jira 验收标准；不要评论、批准或修改代码。", "should_trigger": true, "reason": "The Chinese request explicitly asks for read-only PR and acceptance review."},
+    {"id": 8, "query": "帮我看看当前分支相对 main 的补丁有没有并发问题，测试是否覆盖了所有行为。", "should_trigger": true, "reason": "This asks for a local branch-diff correctness review."},
+    {"id": 9, "query": "pls sanity-check MR 19 before merge—focus on real blockers and cite file/line evidence", "should_trigger": true, "reason": "Casual wording still clearly requests a merge-request review."},
+    {"id": 10, "query": "Review these three commits as one change and separate implementation defects from missing requirement coverage.", "should_trigger": true, "reason": "The request matches the Skill's two-axis review model."},
+    {"id": 11, "query": "The review is done. Stage the fixes, commit them, push the branch, and open a draft PR.", "should_trigger": false, "reason": "Mutation and delivery belong to git-change-delivery."},
+    {"id": 12, "query": "Summarize a Jira issue, its comments, linked issues, and attachment metadata without reviewing code.", "should_trigger": false, "reason": "Issue retrieval without a change set is outside this review Skill."},
+    {"id": 13, "query": "Scan package-lock.json and composer.lock for known vulnerable versions.", "should_trigger": false, "reason": "Dependency advisory analysis belongs to repository-vulnerabilities."},
+    {"id": 14, "query": "Implement all requested changes from these review comments and run the tests.", "should_trigger": false, "reason": "The request is implementation, not read-only review."},
+    {"id": 15, "query": "GitHub Actions is red on PR 42; debug the failing integration-test job and fix it.", "should_trigger": false, "reason": "CI failure diagnosis and implementation are distinct from a general PR review."},
+    {"id": 16, "query": "This feature idea is still vague. Brainstorm the design and turn it into acceptance criteria.", "should_trigger": false, "reason": "Requirement discovery belongs to requirements-clarification."},
+    {"id": 17, "query": "Which image digest is currently deployed in staging?", "should_trigger": false, "reason": "Runtime version lookup is outside change review."},
+    {"id": 18, "query": "不用审查，直接在 GitLab 上批准这个 MR。", "should_trigger": false, "reason": "A bare approval request is an external mutation, not a review workflow."},
+    {"id": 19, "query": "Generate release notes from the commits merged since last Friday.", "should_trigger": false, "reason": "Release-note generation is not change review."},
+    {"id": 20, "query": "解释 src/router.ts 和 src/handler.ts 现在是怎么协作的，没有 PR 或变更范围。", "should_trigger": false, "reason": "General code explanation without a change target should not select PR/MR review."}
+    ,{"id": 21, "query": "https://github.com/octo-org/parcel-api/pull/42", "should_trigger": true, "reason": "A standalone GitHub PR URL is an explicit remote target and should locate a matching checkout from the execution directory."}
+    ,{"id": 22, "query": "审查 /work/parcel-api 这个目录当前的修改。", "should_trigger": true, "reason": "A supplied directory selects a local review based on its Git status and local change set."}
+  ]
+}
