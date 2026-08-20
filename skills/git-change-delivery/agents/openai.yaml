@@ -1,0 +1,4 @@
+interface:
+  display_name: "Git Change Delivery"
+  short_description: "Stage, commit, push, and open a PR or MR"
+  default_prompt: "Use $git-change-delivery to deliver these changes with confirmation at every write stage."

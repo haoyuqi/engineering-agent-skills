@@ -1,0 +1,7 @@
+{
+  "fixture_notice": "Fictional Git hook failure fixture for offline evaluation only.",
+  "branch": "feature/example-export",
+  "staged_paths": ["src/export.py"],
+  "hook": {"name": "pre-commit", "exit_code": 1, "summary": "fictional formatting check failed"},
+  "requested_recovery": "--no-verify"
+}

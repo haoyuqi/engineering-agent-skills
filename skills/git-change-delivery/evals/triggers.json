@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "skill_name": "git-change-delivery",
+  "fixture_notice": "All repositories, branches, issue keys, and scenarios are fictional.",
+  "cases": [
+    {"id": 1, "query": "Stage only the tenant-export changes, commit them, push my branch, and open a draft GitHub pull request.", "should_trigger": true, "reason": "The request spans the full staged delivery workflow."},
+    {"id": 2, "query": "Create a commit from the already staged files, but show me the exact message and scope first.", "should_trigger": true, "reason": "Commit-only delivery is explicitly supported."},
+    {"id": 3, "query": "Push the current branch to origin and set its upstream after confirming the exact ref.", "should_trigger": true, "reason": "A push-only request still needs the delivery safety gate."},
+    {"id": 4, "query": "Open GitLab MR !new from feature/retention to main using the repository template; don't create missing labels.", "should_trigger": true, "reason": "GitLab MR creation with provider conventions is supported."},
+    {"id": 5, "query": "My worktree also has unrelated notes. Commit only src/export and its tests, then publish that branch.", "should_trigger": true, "reason": "Mixed-worktree staging classification is a core safety behavior."},
+    {"id": 6, "query": "The remote branch was rewritten. Propose a force-with-lease push, show the exact branch, and wait for a separate confirmation.", "should_trigger": true, "reason": "Explicit force mode belongs to the guarded push workflow."},
+    {"id": 7, "query": "把当前修改提交并推送到 GitHub，然后创建草稿 PR；每一步都先给我确认。", "should_trigger": true, "reason": "The Chinese request clearly asks for gated Git delivery."},
+    {"id": 8, "query": "只提交已经暂存的文件，先根据 diff 给我三个符合仓库规范的 commit message。", "should_trigger": true, "reason": "Commit message proposal and staged-scope confirmation are supported."},
+    {"id": 9, "query": "ship this branch pls—commit what belongs to NORTH-218, push it, then make an MR", "should_trigger": true, "reason": "Casual language still requests staged Git and MR delivery."},
+    {"id": 10, "query": "Create a PR from the branch I already pushed, with these reviewers and existing labels, after showing the full proposal.", "should_trigger": true, "reason": "PR-only creation remains part of the delivery workflow."},
+    {"id": 11, "query": "Review pull request 42 for correctness and missing tests, but don't change anything.", "should_trigger": false, "reason": "Read-only code review belongs to pr-mr-review."},
+    {"id": 12, "query": "Pull the latest default branch for every repository under ./services.", "should_trigger": false, "reason": "Multi-repository synchronization is outside scoped change delivery."},
+    {"id": 13, "query": "Implement the approved export feature across the API, worker, and migration.", "should_trigger": false, "reason": "Implementation belongs to deep-build until delivery is explicitly requested."},
+    {"id": 14, "query": "Reset this branch hard to origin/main and discard all local changes.", "should_trigger": false, "reason": "Destructive history/worktree recovery is not ordinary delivery."},
+    {"id": 15, "query": "Post this review comment and approve the PR.", "should_trigger": false, "reason": "Review-provider mutations are not commit/push/PR creation."},
+    {"id": 16, "query": "Show git status, current branch, and remotes. Make no changes.", "should_trigger": false, "reason": "A read-only Git inspection does not need the delivery workflow."},
+    {"id": 17, "query": "发布一个新版本并创建 GitHub Release。", "should_trigger": false, "reason": "Release publication is outside commit/push/PR delivery."},
+    {"id": 18, "query": "部署当前分支到测试环境。", "should_trigger": false, "reason": "Deployment is an environment/release operation, not Git delivery."},
+    {"id": 19, "query": "Create a Jira issue describing this bug and assign it to the backend team.", "should_trigger": false, "reason": "Issue creation is not Git change delivery."},
+    {"id": 20, "query": "Scan the branch for vulnerable Composer and npm dependencies before deciding what to commit.", "should_trigger": false, "reason": "Dependency security analysis belongs to repository-vulnerabilities."}
+  ]
+}

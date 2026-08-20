@@ -1,0 +1,11 @@
+{
+  "fixture_notice": "Fictional local Git state fixture for offline evaluation only.",
+  "branch": "feature/example-export",
+  "remote": "https://github.com/example-org/example-repo.git",
+  "changes": [
+    {"path": "src/export.py", "state": "unstaged", "intended": true, "fingerprint": "example-a1"},
+    {"path": "tests/test_export.py", "state": "unstaged", "intended": true, "fingerprint": "example-b2"},
+    {"path": "notes.txt", "state": "unstaged", "intended": false, "fingerprint": "example-c3"},
+    {"path": "docs/draft.md", "state": "staged", "intended": "unknown", "fingerprint": "example-d4"}
+  ]
+}
