@@ -1,0 +1,13 @@
+schema_version: 1
+language: auto
+external_skills:
+  brainstorming: obra/superpowers:brainstorming
+  grill_me: mattpocock/skills:grill-me
+  grilling: mattpocock/skills:grilling
+output:
+  save_directory: .
+  filename: "YYYY-MM-DD-feature-requirements.md"
+safety:
+  read_only: true
+  require_confirmation_to_save: true
+  allow_git_operations: false

@@ -1,0 +1,8 @@
+{
+  "fixture_notice": "Fictional external-Skill handoff fixture for offline evaluation only.",
+  "request": "Design a retry queue for fictional partner notifications.",
+  "mode": "brainstorming_then_grill_me",
+  "available_skills": ["obra/superpowers:brainstorming", "mattpocock/skills:grill-me", "mattpocock/skills:grilling"],
+  "brainstorming_result": {"status": "approved", "decision": "Use idempotency keys and bounded retry delays."},
+  "grill_me_result": {"status": "shared_understanding_confirmed", "open_decisions": []}
+}

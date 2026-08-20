@@ -4,13 +4,13 @@ Turn an incomplete feature idea, product discussion, issue, or specification int
 
 ## Install
 
-Install this directory with a compatible Skill installer. From the repository parent directory:
+Install this Skill from the public repository with a compatible Skill installer:
 
 ```bash
-npx skills add ./engineering-agent-skills --skill requirements-clarification -a codex
+npx skills@1.5.20 add haoyuqi/engineering-agent-skills --skill requirements-clarification
 ```
 
-Replace `codex` with an installer-supported agent. Then explicitly invoke `requirements-clarification`.
+Select a target Agent through the installer's supported options when needed. Then explicitly invoke `requirements-clarification`.
 
 ## External dependencies
 
@@ -18,11 +18,15 @@ The user chooses one of three modes. Only the chosen mode needs its matching dep
 
 | Mode | External Skill | Install command |
 | --- | --- | --- |
-| `brainstorming` | `obra/superpowers:brainstorming` | `npx skills add https://github.com/obra/superpowers --skill brainstorming` |
-| `grill-me` | `mattpocock/skills:grill-me` | `npx skills add https://github.com/mattpocock/skills --skill grill-me` |
+| `brainstorming` | `obra/superpowers:brainstorming` | `npx skills@1.5.20 add obra/superpowers --skill brainstorming` |
+| `grill-me` | `mattpocock/skills:grill-me` and its `mattpocock/skills:grilling` dependency | `npx skills@1.5.20 add mattpocock/skills --skill grill-me --skill grilling` |
 | `brainstorming → grill-me` | Both, in that order | Install both commands above. |
 
-Dependencies are not checked at startup. If the selected dependency is unavailable when invoked, the workflow stops and this Skill does not produce or save a final requirements document.
+Dependencies are not checked at startup. Upstream marks `grill-me` as user-invoked, so runtimes that prohibit nested invocation ask the user to invoke it directly. If the selected dependency or its `grilling` implementation is unavailable when needed, the workflow stops and this Skill does not produce or save a final requirements document.
+
+[external-dependencies.json](external-dependencies.json) is the machine-readable integration contract. It records the reviewed upstream path, source lock, which modes need each dependency, invocation limits, required transitive dependency, handoff result, and failure action. It is not a dependency installer or version resolver.
+
+Optional output and safety defaults are documented in [config.example.yaml](config.example.yaml).
 
 ## Workflow
 
@@ -54,6 +58,8 @@ The external Skills retain their own dialogue and decision workflow. This Skill 
 ## Example and evaluation
 
 - [Fictional input/output example](examples/input-output.md)
+- [Machine-readable evaluations](evals/evals.json)
+- [Trigger evaluations](evals/triggers.json)
 - [Manual evaluation cases](evals/cases.md)
 - [Evaluation rubric](evals/rubric.md)
 

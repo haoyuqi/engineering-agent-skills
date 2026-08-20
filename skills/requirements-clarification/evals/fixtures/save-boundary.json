@@ -1,0 +1,9 @@
+{
+  "fixture_notice": "Fictional save-boundary fixture for offline evaluation only.",
+  "request": "Save and commit the fictional requirements draft.",
+  "mode": "brainstorming",
+  "draft_status": "final_content_unconfirmed",
+  "current_directory": ".",
+  "existing_files": ["2026-08-13-example-retry-requirements.md"],
+  "requested_git_operation": "commit"
+}

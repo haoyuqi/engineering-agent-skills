@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "skill_name": "requirements-clarification",
+  "fixture_notice": "All organizations, products, issues, systems, and scenarios are fictional.",
+  "cases": [
+    {"id": 1, "query": "This feature idea is still fuzzy. Use brainstorming to explore the design, then turn the approved result into testable requirements.", "should_trigger": true, "reason": "The request explicitly selects the brainstorming clarification mode."},
+    {"id": 2, "query": "Grill me on hidden assumptions in this checkout flow until there are no material open decisions, then draft acceptance criteria.", "should_trigger": true, "reason": "The request explicitly selects the grill-me mode."},
+    {"id": 3, "query": "First brainstorm the export design with me, then use grill-me to pressure-test it before writing requirements.", "should_trigger": true, "reason": "The request selects the combined external-workflow sequence."},
+    {"id": 4, "query": "Turn our conversation so far into a reviewable requirements draft, but keep assumptions and confirmed facts separate.", "should_trigger": true, "reason": "Current-context synthesis with provenance is the Skill's core output."},
+    {"id": 5, "query": "The Jira ticket says 'add tenant exports' and nothing else. Help me clarify scope, permissions, failure behavior, and acceptance.", "should_trigger": true, "reason": "An incomplete issue needs structured requirement discovery."},
+    {"id": 6, "query": "I have product notes and an API sketch, but several decisions conflict. Challenge the gaps before implementation starts.", "should_trigger": true, "reason": "Conflicting pre-implementation inputs require clarification and challenge."},
+    {"id": 7, "query": "这个需求还很模糊，先用 brainstorming 和我梳理方案，再整理成可测试的需求。", "should_trigger": true, "reason": "The Chinese request explicitly selects brainstorming and requirements output."},
+    {"id": 8, "query": "用 grill-me 追问我遗漏的边界条件，确认理解一致后再生成验收标准。", "should_trigger": true, "reason": "The Chinese request explicitly selects the grill-me workflow."},
+    {"id": 9, "query": "can u help make this idea implementable? ask the hard product/security questions and leave unknowns open", "should_trigger": true, "reason": "Casual wording still requests pre-implementation clarification."},
+    {"id": 10, "query": "We know the goal but not data ownership, authorization, retries, or rollback. Clarify those decisions and produce FR/AC items.", "should_trigger": true, "reason": "Material scope and safety gaps need structured requirements."},
+    {"id": 11, "query": "The specification is approved. Implement it across the API, worker, migration, and tests.", "should_trigger": false, "reason": "Settled requirements and implementation belong to deep-build."},
+    {"id": 12, "query": "Summarize what a Jira issue currently says, including comments and linked PRs.", "should_trigger": false, "reason": "Read-only retrieval without an open decision is outside requirement clarification."},
+    {"id": 13, "query": "Review the local diff against these already approved acceptance criteria.", "should_trigger": false, "reason": "Change review belongs to pr-mr-review."},
+    {"id": 14, "query": "Save this already final Markdown document as requirements.md without changing its content.", "should_trigger": false, "reason": "A simple file-save request does not need requirement discovery."},
+    {"id": 15, "query": "Create a Jira ticket from this finished requirements document and assign it to the team.", "should_trigger": false, "reason": "Issue creation is an external mutation outside this Skill."},
+    {"id": 16, "query": "Explain how the current authorization middleware works; I am not planning a change.", "should_trigger": false, "reason": "General code explanation is not requirement clarification."},
+    {"id": 17, "query": "需求已经确认，直接开始写代码和测试。", "should_trigger": false, "reason": "The Chinese request says clarification is complete and asks for implementation."},
+    {"id": 18, "query": "把这个 PR 的问题按 P0 到 P3 排序。", "should_trigger": false, "reason": "Severity-ranked PR findings belong to pr-mr-review."},
+    {"id": 19, "query": "Prepare a sprint demo for the completed feature and include cleanup steps.", "should_trigger": false, "reason": "Post-implementation demo planning is outside requirement clarification."},
+    {"id": 20, "query": "Draft an architecture decision record from this already chosen design.", "should_trigger": false, "reason": "Documenting an already settled design is not an open requirement-discovery workflow."}
+  ]
+}
