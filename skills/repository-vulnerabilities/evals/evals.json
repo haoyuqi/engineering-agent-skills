@@ -51,7 +51,9 @@
           "type": "observable-output",
           "assertion": "Scanner advisory records, lockfile package/version occurrences, and npm propagation-only markers are reported as separate counts",
           "evidence_sources": [
+            "evals/fixtures/composer.lock",
             "evals/fixtures/composer-audit.json",
+            "evals/fixtures/package-lock.json",
             "evals/fixtures/npm-audit.json"
           ]
         },
@@ -60,7 +62,9 @@
           "type": "observable-output",
           "assertion": "No external advisory source is contacted or treated as approved merely because registry audit approval was granted",
           "evidence_sources": [
+            "evals/fixtures/composer.lock",
             "evals/fixtures/composer-audit.json",
+            "evals/fixtures/package-lock.json",
             "evals/fixtures/npm-audit.json"
           ]
         }
