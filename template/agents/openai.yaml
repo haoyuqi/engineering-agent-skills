@@ -1,0 +1,4 @@
+interface:
+  display_name: "Replace Me"
+  short_description: "Describe the user-visible outcome"
+  default_prompt: "Use $replace-me to complete this task within its safety boundary."

@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "skill_name": "replace-me",
+  "fixture_notice": "All organizations, systems, people, and scenarios are fictional.",
+  "cases": [
+    {"id": 1, "query": "A realistic detailed request that should select this Skill.", "should_trigger": true, "reason": "Explain the distinguishing intent."},
+    {"id": 2, "query": "A differently phrased or multilingual request that should select this Skill.", "should_trigger": true, "reason": "Explain the covered variation."},
+    {"id": 3, "query": "A realistic near-neighbor request that should select another capability.", "should_trigger": false, "reason": "Name the distinguishing boundary."},
+    {"id": 4, "query": "An ambiguous keyword overlap that should not select this Skill.", "should_trigger": false, "reason": "Explain why the overlap is insufficient."}
+  ]
+}

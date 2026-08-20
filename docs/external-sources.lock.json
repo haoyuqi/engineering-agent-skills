@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-08-13",
+  "sources": [
+    {
+      "id": "obra-superpowers",
+      "repository": "https://github.com/obra/superpowers",
+      "revision": "b36e0829c6d0140e93cfef2ca599b1b07d4a7797",
+      "reviewed_paths": [
+        "skills/brainstorming/SKILL.md",
+        "skills/writing-skills/testing-skills-with-subagents.md"
+      ],
+      "purpose": "External brainstorming integration and skill-testing design reference."
+    },
+    {
+      "id": "mattpocock-skills",
+      "repository": "https://github.com/mattpocock/skills",
+      "revision": "84fdeffd12f2ee307994d1eb6feb48173b6e0502",
+      "reviewed_paths": [
+        "skills/productivity/grill-me/SKILL.md",
+        "skills/productivity/grilling/SKILL.md",
+        "docs/productivity/grill-me.md",
+        "docs/productivity/grilling.md"
+      ],
+      "purpose": "External grilling wrapper/primitive integration and dependency boundary."
+    }
+  ]
+}

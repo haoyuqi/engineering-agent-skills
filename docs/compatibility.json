@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "verified_project_agents": [
+    {"id": "codex", "display_name": "Codex", "project_skill_root": ".agents/skills"},
+    {"id": "claude-code", "display_name": "Claude Code", "project_skill_root": ".claude/skills"},
+    {"id": "opencode", "display_name": "OpenCode", "project_skill_root": ".agents/skills"},
+    {"id": "github-copilot", "display_name": "GitHub Copilot", "project_skill_root": ".agents/skills"}
+  ]
+}

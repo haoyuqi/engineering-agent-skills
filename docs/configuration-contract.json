@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "semantics": {
+    "delivery": "explicit_user_input",
+    "automatic_loading": false,
+    "unknown_key_behavior": "report_as_unsupported_and_do_not_assume_effect",
+    "secret_policy": "never_store_credentials_or_tokens_in_tracked_configuration",
+    "write_authorization": "configuration_never_replaces_exact_user_confirmation"
+  },
+  "skill_contracts": [
+    {"skill_name": "deep-build", "top_level_keys": ["schema_version", "language", "workflow", "implementation", "review", "safety"], "configuration_role": "agent_workflow_policy"},
+    {"skill_name": "git-change-delivery", "top_level_keys": ["schema_version", "language", "provider", "git", "commit", "change_request", "safety"], "configuration_role": "agent_workflow_policy"},
+    {"skill_name": "pr-mr-review", "top_level_keys": ["schema_version", "language", "providers", "requirements", "agents", "safety", "limits"], "configuration_role": "agent_workflow_policy"},
+    {"skill_name": "repository-vulnerabilities", "top_level_keys": ["schema_version", "agent_policy", "network_policy", "safety"], "configuration_role": "agent_policy_only"},
+    {"skill_name": "requirements-clarification", "top_level_keys": ["schema_version", "language", "external_skills", "output", "safety"], "configuration_role": "agent_workflow_policy"}
+  ]
+}

@@ -1,0 +1,5 @@
+schema_version: 1
+language: auto
+safety:
+  read_only: true
+  require_confirmation_for_writes: true
