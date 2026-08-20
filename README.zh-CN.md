@@ -47,6 +47,7 @@ python3 tests/test_repository_structure.py
 | --- | --- |
 | [requirements-clarification](skills/requirements-clarification/) | 通过外部探索与压力测试流程，将当前讨论整理为可测试的需求草案。包含[完全虚构的输入/输出示例](skills/requirements-clarification/examples/input-output.md)和离线评测用例。 |
 | [repository-vulnerabilities](skills/repository-vulnerabilities/) | 审计 Composer/npm 锁文件；注册表访问、确定性证据汇总和外部漏洞库核验均设有明确确认边界。 |
+| [deep-build](skills/deep-build/) | 通过书面 Plan、独立审阅门禁和证据化交接实施大型改动，在 Git 交付前停止。 |
 
 ## 许可证
 

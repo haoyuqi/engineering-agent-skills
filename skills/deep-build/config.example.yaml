@@ -1,0 +1,20 @@
+schema_version: 1
+language: auto
+workflow:
+  plan_directory: .agent-plans
+  require_written_plan: true
+  require_plan_review_pass: true
+  require_code_review_pass: true
+  allow_human_or_external_plan_reviewer: true
+  prefer_independent_agent_or_model: true
+implementation:
+  prefer_test_first: true
+  max_files_per_slice: 8
+review:
+  use_actual_diff_for_criteria: true
+  require_review_record_in_plan: true
+safety:
+  allow_git_writes: false
+  allow_external_writes: false
+  confirm_destructive_changes: true
+  preserve_unrelated_changes: true

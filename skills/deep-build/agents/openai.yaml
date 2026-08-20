@@ -1,0 +1,4 @@
+interface:
+  display_name: "Deep Build"
+  short_description: "Plan, implement, verify, and review substantial changes"
+  default_prompt: "Use $deep-build to implement this non-trivial change and stop at user acceptance without Git delivery."

@@ -49,6 +49,7 @@ See [README.zh-CN.md](README.zh-CN.md) for Chinese documentation.
 | --- | --- |
 | [requirements-clarification](skills/requirements-clarification/) | Turn current discussion into a testable requirements draft through external exploration and challenge workflows. Includes [a fictional input/output example](skills/requirements-clarification/examples/input-output.md) and offline evaluation cases. |
 | [repository-vulnerabilities](skills/repository-vulnerabilities/) | Audit Composer/npm lockfiles with registry approval gates, deterministic evidence summaries, and separately approved advisory verification. |
+| [deep-build](skills/deep-build/) | Implement substantial changes through a written Plan, independent review gates, and evidence-based handoff; stop before Git delivery. |
 
 ## License
 

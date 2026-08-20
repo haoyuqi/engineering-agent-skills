@@ -1,0 +1,1 @@
+{"fixture_notice":"Fictional actual-diff routing fixture for offline evaluation only.","diff_signals":["new authenticated API endpoint","user-controlled filter input","PostgreSQL index migration","batch export loop","240 changed lines"],"plan_review":{"verdict":"PASS"},"code_review":{"verdict":"pending"}}

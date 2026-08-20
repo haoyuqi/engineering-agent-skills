@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "skill_name": "deep-build",
+  "fixture_notice": "All projects and scenarios are fictional.",
+  "cases": [
+    {"id": 1, "query": "Implement the approved tenant-scoped export across the API, worker, database migration, and tests.", "should_trigger": true, "reason": "A substantial approved change spans multiple layers."},
+    {"id": 2, "query": "Build the retention-policy change described in this spec across the service and background jobs, then verify it.", "should_trigger": true, "reason": "The task needs multi-file implementation and verification."},
+    {"id": 3, "query": "Add idempotent retries to the API, queue producer, worker, and persistence layer, with migration and tests.", "should_trigger": true, "reason": "The change spans interfaces, persistence, failure behavior, and verification."},
+    {"id": 4, "query": "Implement this approved authorization model across HTTP handlers, service methods, background jobs, and fixtures.", "should_trigger": true, "reason": "A settled cross-layer design needs coordinated implementation."},
+    {"id": 5, "query": "Continue the partially implemented retention feature in this dirty worktree; recover context before changing the remaining slices.", "should_trigger": true, "reason": "Substantial existing work needs context recovery and worktree preservation."},
+    {"id": 6, "query": "Refactor the shared event contract across three packages without breaking backward compatibility, then run each package's checks.", "should_trigger": true, "reason": "A multi-component compatibility change fits the ledger and slice workflow."},
+    {"id": 7, "query": "按照已经确认的需求，实现跨 API、数据库和异步任务的导出功能，并逐项验证验收标准。", "should_trigger": true, "reason": "The Chinese request is a substantial approved multi-layer build."},
+    {"id": 8, "query": "修复这个涉及事务、并发 worker 和重试策略的数据重复问题，不要提交 Git。", "should_trigger": true, "reason": "The bug spans several boundaries and explicitly stops before delivery."},
+    {"id": 9, "query": "build the whole feature from this approved spec, keep a requirement ledger, and stop for my acceptance", "should_trigger": true, "reason": "Informal wording still asks for the complete substantial-build workflow."},
+    {"id": 10, "query": "Introduce a new storage adapter, wire it through configuration and dependency injection, migrate callers, and add integration coverage.", "should_trigger": true, "reason": "The work is a coherent but broad architectural implementation."},
+    {"id": 11, "query": "Fix the typo in this README heading.", "should_trigger": false, "reason": "A trivial edit does not need the multi-layer workflow."},
+    {"id": 12, "query": "Commit these finished changes and open a pull request.", "should_trigger": false, "reason": "Git delivery belongs to git-change-delivery."},
+    {"id": 13, "query": "This feature idea is vague; help me decide what it should do before coding.", "should_trigger": false, "reason": "Unsettled scope belongs to requirements-clarification."},
+    {"id": 14, "query": "Review pull request 42 and list concrete regressions without modifying files.", "should_trigger": false, "reason": "Read-only review belongs to pr-mr-review."},
+    {"id": 15, "query": "Scan composer.lock and package-lock.json for known vulnerabilities.", "should_trigger": false, "reason": "Dependency advisory analysis belongs to repository-vulnerabilities."},
+    {"id": 16, "query": "Change one configuration default from 10 to 20 in config.yaml.", "should_trigger": false, "reason": "A small obvious edit does not need a substantial-build ledger."},
+    {"id": 17, "query": "Summarize an issue and identify unanswered acceptance questions, but do not implement it.", "should_trigger": false, "reason": "Read-only context synthesis is not substantial implementation."},
+    {"id": 18, "query": "Deploy the already built service to the staging cluster.", "should_trigger": false, "reason": "Deployment is outside local implementation."},
+    {"id": 19, "query": "Update every repository under ./services from its upstream branch.", "should_trigger": false, "reason": "Multi-repository synchronization is outside a scoped implementation workflow."},
+    {"id": 20, "query": "根据这些已完成的 Issue 和提交生成本周工作报告。", "should_trigger": false, "reason": "Reporting is not a software implementation workflow."}
+  ]
+}
