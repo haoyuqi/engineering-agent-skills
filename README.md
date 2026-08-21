@@ -100,26 +100,6 @@ offline validation and model-backed evidence. Model-run evidence is publishable
 only when reproduced from the committed Skill revision and validated with the
 [result format](docs/evaluation-result-format.md).
 
-## Architecture
-
-```mermaid
-flowchart LR
-    U[User request and current context] --> S[One independently installed Skill]
-    C[Optional config.example.yaml] --> S
-    S --> A{Available adapters}
-    A --> G[GitHub or GitLab]
-    A --> I[Jira, GitHub Issues, or GitLab Issues]
-    A --> L[Local Git, files, package managers, or cluster CLI]
-    A --> X[User-provided REST or connector]
-    S --> R[Evidence-linked result]
-    E[Trigger and workflow evals] -. verify .-> S
-    S --> W{Write requested?}
-    W -->|No| R
-    W -->|Yes| Q[Show exact target and ask for confirmation]
-```
-
-There is no shared runtime service and no required coupling between Skills in this repository. Adapters and Agent role names are configuration values. `requirements-clarification` is the only Skill with declared external Skill dependencies.
-
 See [README.zh-CN.md](README.zh-CN.md) for Chinese documentation.
 
 ## Available skills

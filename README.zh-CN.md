@@ -91,26 +91,6 @@ python3 tests/test_installer_compatibility.py
 只有在基于已提交的 Skill 版本复现，并按[结果格式](docs/evaluation-result-format.md)
 校验后才可发布。
 
-## 架构
-
-```mermaid
-flowchart LR
-    U[用户请求与当前上下文] --> S[一个独立安装的 Skill]
-    C[可选 config.example.yaml] --> S
-    S --> A{可用适配器}
-    A --> G[GitHub 或 GitLab]
-    A --> I[Jira、GitHub Issues 或 GitLab Issues]
-    A --> L[本地 Git、文件、包管理器或集群 CLI]
-    A --> X[用户提供的 REST 或连接器]
-    S --> R[带证据的结果]
-    E[触发与工作流评测] -. 验证 .-> S
-    S --> W{是否需要写操作}
-    W -->|否| R
-    W -->|是| Q[展示准确目标并请求确认]
-```
-
-仓库不依赖共享运行时服务，仓库内 Skill 之间也没有强依赖。适配器与 Agent 角色名称均为配置项；只有 `requirements-clarification` 明确依赖两个外部 Skill。
-
 ## 已包含的 Skill
 
 | Skill | 功能 |
