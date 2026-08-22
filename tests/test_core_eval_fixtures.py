@@ -29,6 +29,7 @@ CORE_FIXTURES = {
         "destructive-migration.json": ("requirement", "migration", "confirmation"),
         "build-handoff.json": ("requirements", "verification", "worktree"),
         "plan-review-failed.json": ("plan", "implementation_started"),
+        "plan-review-awaiting-user-approval.json": ("plan", "user_plan_approval", "implementation_started"),
         "review-routing.json": ("diff_signals", "plan_review", "code_review"),
     },
 }
