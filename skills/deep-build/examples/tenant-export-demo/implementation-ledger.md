@@ -12,6 +12,13 @@
 3. Run the complete local test suite, inspect the diff, then perform a fresh
    requirement and code-quality review.
 
+## Plan review and user approval
+
+An independent reviewer passes the fictional Plan. The Agent reports the Plan
+path, verdict, findings, revisions, risks, and requested next step. The user
+then explicitly approves that reviewed Plan before the first implementation
+slice begins.
+
 ## Review result
 
 No blocking or required findings remain in this fictional example. The review

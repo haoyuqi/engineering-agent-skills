@@ -4,6 +4,7 @@ workflow:
   plan_directory: .agent-plans
   require_written_plan: true
   require_plan_review_pass: true
+  require_user_plan_approval: true
   require_code_review_pass: true
   allow_human_or_external_plan_reviewer: true
   prefer_independent_agent_or_model: true

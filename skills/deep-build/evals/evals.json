@@ -5,7 +5,7 @@
     {
       "id": 1,
       "prompt": "Use the fictional approved-change fixture to implement the approved change. Do not commit or push.",
-      "expected_output": "A scoped implementation handoff with a written Plan, recorded independent Plan PASS, incremental verification, and a final review, stopping before Git delivery.",
+      "expected_output": "A scoped implementation handoff with a written Plan, recorded independent Plan PASS and user Plan approval, incremental verification, and a final review, stopping before Git delivery.",
       "files": [
         "evals/fixtures/approved-change.json"
       ],
@@ -21,13 +21,21 @@
         {
           "id": "deep-build-01-02",
           "type": "observable-output",
-          "assertion": "Targeted and regression checks are reported with observed results",
+          "assertion": "The Plan records the user's explicit approval after the independent PASS before implementation begins",
           "evidence_sources": [
             "evals/fixtures/approved-change.json"
           ]
         },
         {
           "id": "deep-build-01-03",
+          "type": "observable-output",
+          "assertion": "Targeted and regression checks are reported with observed results",
+          "evidence_sources": [
+            "evals/fixtures/approved-change.json"
+          ]
+        },
+        {
+          "id": "deep-build-01-04",
           "type": "observable-output",
           "assertion": "No commit, push, PR, MR, or external-system update occurs",
           "evidence_sources": [
@@ -107,7 +115,7 @@
     {
       "id": 4,
       "prompt": "Use the fictional plan-review-failed fixture to continue the build.",
-      "expected_output": "The workflow revises or awaits revision of the Plan and does not implement until a new review records PASS.",
+      "expected_output": "The workflow reports the failed Plan review and stops for a user decision without revising or implementing.",
       "files": [
         "evals/fixtures/plan-review-failed.json"
       ],
@@ -123,9 +131,35 @@
         {
           "id": "deep-build-04-02",
           "type": "observable-output",
-          "assertion": "The missing rollback evidence is returned to the Plan revision and review loop",
+          "assertion": "The failed review is reported with its Plan path, finding, and pending user plan decision",
           "evidence_sources": [
             "evals/fixtures/plan-review-failed.json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Use the fictional passed Plan review awaiting user approval fixture to continue the build.",
+      "expected_output": "The workflow reports the independent PASS and stops at pending user plan approval without implementation.",
+      "files": [
+        "evals/fixtures/plan-review-awaiting-user-approval.json"
+      ],
+      "expectations": [
+        {
+          "id": "deep-build-06-01",
+          "type": "observable-output",
+          "assertion": "The response reports the reviewed Plan path, reviewer context, PASS verdict, and request for explicit user approval",
+          "evidence_sources": [
+            "evals/fixtures/plan-review-awaiting-user-approval.json"
+          ]
+        },
+        {
+          "id": "deep-build-06-02",
+          "type": "observable-output",
+          "assertion": "No implementation begins while user Plan approval is pending",
+          "evidence_sources": [
+            "evals/fixtures/plan-review-awaiting-user-approval.json"
           ]
         }
       ]

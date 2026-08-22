@@ -1,12 +1,12 @@
 # Deep Build
 
-`deep-build` implements a substantial approved change only after a written Plan passes independent review. Its portable contract is:
+`deep-build` implements a substantial approved change only after a written Plan passes independent review and the user approves that reviewed Plan. Its portable contract is:
 
 ```text
-Plan document → Plan Review PASS → incremental implementation → Code Review PASS → user acceptance
+Plan document → independent Plan Review → report to user → user approves Plan → incremental implementation → Code Review PASS → user acceptance
 ```
 
-It is host-neutral. An OpenCode/OMO workflow can use separate agents and models; another host can use an external Agent or human reviewer. A same-context self-review never satisfies the Plan Review gate. Git delivery, deployment, and remote PR/MR review are outside this skill.
+It is host-neutral. An OpenCode/OMO workflow can use separate agents and models; another host can use an external Agent or human reviewer. A same-context self-review never satisfies the Plan Review gate. Report every review result with the Plan path, reviewer context, findings, revisions, risks, and next decision; after PASS, request Plan approval and stop until the user responds. Git delivery, deployment, and remote PR/MR review are outside this skill.
 
 ```text
 Use deep-build to implement the approved tenant-scoped export feature across the API and worker.
