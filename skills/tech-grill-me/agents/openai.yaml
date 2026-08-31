@@ -1,0 +1,4 @@
+interface:
+  display_name: "Tech Grill Me"
+  short_description: "Run an adaptive technical interview practice session"
+  default_prompt: "Use $tech-grill-me to quiz me on a technical topic, document, or selected codebase area."

@@ -6,7 +6,7 @@ runtime loader. Supply it through the selected Agent's normal context or
 configuration mechanism, or paste only the relevant settings into the request.
 
 [`configuration-contract.json`](configuration-contract.json) is the
-machine-readable source of truth for the supported top-level keys of all five
+machine-readable source of truth for the supported top-level keys of all six
 templates. It distinguishes a general `agent_workflow_policy` from the
 `repository-vulnerabilities` `agent_policy_only` template: its bundled runner
 accepts documented CLI flags and never silently reads YAML.

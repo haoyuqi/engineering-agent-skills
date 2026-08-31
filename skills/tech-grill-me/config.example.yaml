@@ -1,0 +1,11 @@
+schema_version: 1
+language: auto
+session:
+  max_retry_per_question: 1
+  save_weak_points_default: ask
+filesystem:
+  require_explicit_codebase_scope: true
+  execute_code: false
+safety:
+  read_only: true
+  require_confirmation_for_writes: true
