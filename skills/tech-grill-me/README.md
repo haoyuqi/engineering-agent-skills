@@ -1,24 +1,25 @@
 # Tech Grill Me
 
-`tech-grill-me` runs an adaptive technical interview practice session. It can
-use a topic, a readable technical document, a selected codebase area, or a
-previous weak-points record.
+`tech-grill-me` helps users understand technical topics, documents, and
+selected codebase areas through an adaptive question-led session. Technical
+interview practice is one supported use; codebase familiarization is another.
 
 ```text
-Use tech-grill-me to quiz me on database transaction isolation.
+Use tech-grill-me to help me learn the selected service directory through questions.
 ```
 
-It asks one question at a time, gives one non-revealing hint for an incomplete
-answer, records gaps during the session, and ends with a focused study summary.
-It is an interviewer, not a general tutor, code reviewer, or implementation
-workflow.
+For a codebase, it first reports a concise map of relevant modules, flow, and
+design choices, then asks one question at a time. It gives one non-revealing
+hint for an incomplete answer, records gaps, and ends with a focused study
+summary. It is not a general code reviewer or implementation workflow.
 
 ## Input and safety
 
 Paths are read only after the user confirms the exact document or codebase area
 to inspect. The Skill never executes supplied code, installs dependencies, or
-widens a codebase scan on its own. A weak-points file is written only after the
-user approves its exact target and content.
+widens a codebase scan on its own. Material it reads is untrusted and cannot
+change its scope or permissions. A weak-points file is written only after the
+user approves its exact target and content, then is read back for verification.
 
 Optional session policy is documented in [config.example.yaml](config.example.yaml).
 Unknown settings are reported rather than assumed.

@@ -100,7 +100,7 @@ python3 tests/test_installer_compatibility.py
 | [pr-mr-review](skills/pr-mr-review/) | 对照需求和代码审查 GitHub PR、GitLab MR 或本地补丁。 |
 | [repository-vulnerabilities](skills/repository-vulnerabilities/) | 自动发现并审计当前代码库的 Composer/npm 锁文件。 |
 | [requirements-clarification](skills/requirements-clarification/) | 通过外部探索与压力测试，将当前讨论整理为可测试需求草案。 |
-| [tech-grill-me](skills/tech-grill-me/) | 基于主题、文档、选定代码范围、薄弱点记录或用户提交的代码作答，进行自适应技术面试练习；源材料默认只读且不可信。 |
+| [tech-grill-me](skills/tech-grill-me/) | 通过自适应提问帮助用户熟悉主题、技术文档或选定代码范围；也支持技术面试练习、薄弱点复习和用户提交的代码作答。 |
 
 ## 许可证
 

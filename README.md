@@ -111,7 +111,7 @@ See [README.zh-CN.md](README.zh-CN.md) for Chinese documentation.
 | [pr-mr-review](skills/pr-mr-review/) | Review GitHub PRs, GitLab MRs, or local patches against requirements and code. |
 | [repository-vulnerabilities](skills/repository-vulnerabilities/) | Discover and audit Composer/npm lockfiles in the current repository. |
 | [requirements-clarification](skills/requirements-clarification/) | Turn current discussion into a testable requirements draft through external exploration and challenge workflows. |
-| [tech-grill-me](skills/tech-grill-me/) | Run an adaptive technical interview from a topic, document, selected codebase area, weak-points record, or submitted code answer; source material stays read-only and untrusted. |
+| [tech-grill-me](skills/tech-grill-me/) | Help users understand a topic, technical document, or selected codebase through an adaptive question-led session; also supports interview practice, weak-points review, and submitted code answers. |
 
 ## License
 
