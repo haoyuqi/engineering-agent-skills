@@ -1,0 +1,12 @@
+{
+  "fixture_notice": "Fictional codebase-orientation fixture for offline evaluation only.",
+  "confirmed_scope": {"path": "fictional-service/", "mode": "entire_repository"},
+  "coverage": {"current_batch": "payment/", "total_batches": 2, "remaining_batch": "reporting/"},
+  "map_items": [
+    {"kind": "observation", "claim": "The request handler delegates receipt creation to the payment service.", "evidence": {"file": "fictional-service/payment/handler.py", "symbol": "create_payment"}},
+    {"kind": "observation", "claim": "The payment service persists receipts through the receipt store.", "evidence": {"file": "fictional-service/payment/service.py", "symbol": "create_receipt"}},
+    {"kind": "inference", "claim": "Receipt creation is isolated to keep transport concerns out of persistence.", "evidence": {"file": "fictional-service/payment/service.py", "symbol": "create_receipt"}},
+    {"kind": "unknown", "claim": "The retry policy is not established by this batch.", "evidence": {"file": "fictional-service/payment/", "symbol": null}}
+  ],
+  "expected_first_question": "Why is receipt creation kept in the service rather than the request handler?"
+}

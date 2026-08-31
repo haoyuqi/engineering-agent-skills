@@ -1,0 +1,9 @@
+{
+  "fixture_notice": "Fictional confirmed-save fixture for offline evaluation only.",
+  "proposed_write": {
+    "path": "practice-weak-points.md",
+    "content": "fictional weak-points summary"
+  },
+  "user_confirmation": "confirmed",
+  "required_verification": "Read the saved file back and compare it to the approved content before reporting success."
+}

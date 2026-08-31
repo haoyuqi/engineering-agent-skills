@@ -1,0 +1,6 @@
+{
+  "fixture_notice": "Fictional code-answer fixture for offline evaluation only.",
+  "active_question": "Write a function that returns whether a string is a palindrome.",
+  "submitted_answer": "function isPalindrome(value) { return value === value.split('').reverse().join(''); }",
+  "review_boundary": "Assess static correctness only; do not execute code or review unrelated style."
+}

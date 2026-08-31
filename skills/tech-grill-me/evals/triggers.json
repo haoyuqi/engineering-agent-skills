@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "skill_name": "tech-grill-me",
+  "fixture_notice": "All people, files, codebases, and scenarios are fictional.",
+  "cases": [
+    {"id":1,"query":"Quiz me on OAuth token rotation.","should_trigger":true,"reason":"Interactive technical drill on a topic."},
+    {"id":2,"query":"帮我就 Redis 持久化来一场技术面试。","should_trigger":true,"reason":"Chinese technical interview request."},
+    {"id":3,"query":"Grill me on the architecture in docs/design-notes.md.","should_trigger":true,"reason":"User requests questioning based on a document."},
+    {"id":4,"query":"Read this selected service directory, then help me learn how it works by asking questions.","should_trigger":true,"reason":"Question-led codebase familiarization."},
+    {"id":5,"query":"I want a practice interview for Python concurrency.","should_trigger":true,"reason":"Explicit interview practice."},
+    {"id":6,"query":"考考我对 JWT 验签的理解。","should_trigger":true,"reason":"Chinese request to test technical knowledge."},
+    {"id":7,"query":"Resume from my weak-points notes and test the gaps.","should_trigger":true,"reason":"Weak-points record is a supported input."},
+    {"id":8,"query":"Give me one question at a time about Linux networking.","should_trigger":true,"reason":"Progressive drill request."},
+    {"id":9,"query":"模拟一次数据库事务的面试，逐题问我。","should_trigger":true,"reason":"Chinese one-at-a-time interview request."},
+    {"id":10,"query":"给我一道算法题，我写代码后你只评估是否答对。","should_trigger":true,"reason":"Interactive technical drill with a code answer."},
+    {"id":11,"query":"Review pull request 82 for regressions.","should_trigger":false,"reason":"A patch review belongs to pr-mr-review."},
+    {"id":12,"query":"Explain how OAuth works from scratch.","should_trigger":false,"reason":"General teaching does not request interactive assessment."},
+    {"id":13,"query":"Implement JWT authentication in this application.","should_trigger":false,"reason":"Implementation belongs to a build workflow."},
+    {"id":14,"query":"扫描这个仓库的 npm 漏洞。","should_trigger":false,"reason":"Dependency auditing belongs to repository-vulnerabilities."},
+    {"id":15,"query":"Write a technical interview question bank for my course.","should_trigger":false,"reason":"Creating content is not an interactive session."},
+    {"id":16,"query":"Summarize this architecture document.","should_trigger":false,"reason":"Summarization alone does not request questioning."},
+    {"id":17,"query":"把这个代码库重构得更清晰。","should_trigger":false,"reason":"Refactoring is not question-led exploration."},
+    {"id":18,"query":"Create flashcards about database indexes.","should_trigger":false,"reason":"Flashcard generation is not progressive Q&A."},
+    {"id":19,"query":"What is a deadlock?","should_trigger":false,"reason":"A single factual question is not a drill request."},
+    {"id":20,"query":"帮我写一份面试复盘报告。","should_trigger":false,"reason":"A retrospective report without an interactive session is outside scope."}
+  ]
+}
