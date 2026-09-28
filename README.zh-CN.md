@@ -84,7 +84,7 @@ python3 tests/test_installer_compatibility.py
 - **证据优先**：每项发现必须关联 diff、文件位置、需求、依赖版本或工具输出；未知信息必须明确标注。
 - **可验证**：每个 Skill 都包含脱敏示例和离线评测用例。
 
-本仓库的完整质量门槛见 [docs/skill-quality-standard.zh-CN.md](docs/skill-quality-standard.zh-CN.md)。[docs/design-benchmarks.md](docs/design-benchmarks.md) 记录采用的上游机制和有意保留的差异；[docs/privacy-review.md](docs/privacy-review.md) 定义公开内容的自动脱敏与人工来源复核门槛。
+本仓库的完整质量门槛见 [docs/skill-quality-standard.zh-CN.md](docs/skill-quality-standard.zh-CN.md)。[docs/design-benchmarks.md](docs/design-benchmarks.md) 记录采用的上游机制和有意保留的差异；[docs/privacy-review.md](docs/privacy-review.md) 说明轻量泄漏检查与人工来源复核。脚本不会自动脱敏，也不能证明不存在工作背景信息。
 
 [docs/evaluation.md](docs/evaluation.md) 说明触发测试、基于 fixture 的工作流评测、
 重复运行记录，以及“离线结构通过”和“模型行为已验证”之间的区别。模型运行证据

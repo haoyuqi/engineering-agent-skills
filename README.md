@@ -92,7 +92,7 @@ python3 tests/test_installer_compatibility.py
 - **Evidence first** — findings must link to a diff, file location, requirement, dependency version, or tool output. Unknowns remain unknown.
 - **Verifiable** — each skill includes sanitized examples and offline evaluation cases.
 
-The repository's definition of a high-quality Skill is documented in [docs/skill-quality-standard.md](docs/skill-quality-standard.md). [docs/design-benchmarks.md](docs/design-benchmarks.md) records adopted upstream patterns and deliberate differences. [docs/privacy-review.md](docs/privacy-review.md) defines the automated and human provenance gate for public content.
+The repository's definition of a high-quality Skill is documented in [docs/skill-quality-standard.md](docs/skill-quality-standard.md). [docs/design-benchmarks.md](docs/design-benchmarks.md) records adopted upstream patterns and deliberate differences. [docs/privacy-review.md](docs/privacy-review.md) describes lightweight disclosure checks and human provenance review. The scanner does not sanitize content or prove that workplace information is absent.
 
 See [docs/evaluation.md](docs/evaluation.md) for trigger tests, fixture-backed
 workflow evaluation, repeated-run reporting, and the distinction between
