@@ -1,6 +1,15 @@
 # Review criteria
 
-Use this file after implementation, against the actual diff. Read the repository's `AGENTS.md` and local conventions first; they override generic conventions. Record every selected criterion and its evidence in the Plan.
+Read the reviewer policy below before both Plan Review and Code Review. Apply the code-specific criteria after implementation, against the actual diff. Read the repository's `AGENTS.md` and local conventions first; they override generic conventions. Record every selected criterion and its evidence in the Plan.
+
+## Independent reviewer policy — both gates
+
+- The reviewer must not have authored the version being reviewed. Use a separate agent context, another session, an external reviewer, or a human. A role change inside the author's existing context is still self-review. Plan and Code Review may use the same reviewer if that reviewer did not write either artifact.
+- Give the reviewer requirements, the Plan or actual diff, relevant repository context, and verification evidence. Reviewer conclusions must come from inspecting the artifacts, not accepting the author's summary. Keep review read-only; the author handles revisions and code fixes. Re-review the changed version and affected surrounding code before recording PASS.
+- Prefer a different model only when its capabilities fit the task. Do not select a weaker or lightweight model solely to obtain a different model name. Use the user's configured reviewer when suitable; disclose a known capability mismatch rather than silently accepting it.
+- When suitability of an alternative is unknown, retain the author's model and reasoning effort in a separate context. If the runtime cannot provide this, request a suitable external or human reviewer; stop at `pending external review` until one is available. No provider, tool, or model ranking is hardcoded.
+- Record reviewer identity/context, reviewed version (commit or working-copy fingerprint), known model and effort, selection rationale, findings, and verdict. Report unavailable model metadata as unknown, and human model metadata as N/A; never infer independence or claim a different model from a role name alone.
+- Report each review result to the user. Plan PASS still requires explicit user Plan approval. Code PASS still requires the final handoff and user acceptance. Missing independent evidence is pending, never PASS.
 
 ## Always: five-axis review
 

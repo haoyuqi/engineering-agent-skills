@@ -63,6 +63,8 @@ jobs:
         run: python3 tests/test_repository_vulnerability_summary.py
       - name: Validate core workflow evaluation fixtures
         run: python3 tests/test_core_eval_fixtures.py
+      - name: Validate deep-build review contract
+        run: python3 tests/test_deep_build_contract.py
       - name: Validate evaluation contracts
         run: python3 tests/test_evaluation_contract.py
       - name: Test evaluation result validator

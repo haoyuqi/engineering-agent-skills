@@ -1,1 +1,13 @@
-{"fixture_notice":"Fictional actual-diff routing fixture for offline evaluation only.","diff_signals":["new authenticated API endpoint","user-controlled filter input","PostgreSQL index migration","batch export loop","240 changed lines"],"plan_review":{"verdict":"PASS"},"code_review":{"verdict":"pending"}}
+{
+  "fixture_notice": "Fictional actual-diff routing and reviewer selection scenarios for offline evaluation only.",
+  "diff_signals": ["new authenticated API endpoint", "user-controlled filter input", "PostgreSQL index migration", "batch export loop", "240 changed lines"],
+  "plan_review": {"verdict": "PASS"},
+  "code_review": {"verdict": "pending"},
+  "reviewer_scenarios": [
+    {"id": "capable-alternative", "author_model": "fictional-capable-a", "author_effort": "high", "alternative_model": "fictional-capable-b", "alternative_suitability": "established", "separate_context_available": true},
+    {"id": "unknown-lightweight", "author_model": "fictional-capable-a", "author_effort": "high", "alternative_model": "fictional-lightweight", "alternative_suitability": "unknown", "separate_context_available": true},
+    {"id": "self-review-only", "tests": "passed", "author_self_review": "PASS", "separate_context_available": false, "external_or_human_reviewer_available": false},
+    {"id": "repair-round", "reviewer_authored_version": false, "version": "fictional-v1", "finding": {"severity": "Required", "description": "Missing tenant predicate"}, "proposed_repair_actor": "implementer", "next_version": "fictional-v2"},
+    {"id": "unknown-metadata", "reviewer_context": "external-non-author", "model": null, "effort": null, "artifact_review_evidence": "fictional-v2 reviewed with no blocking findings"}
+  ]
+}

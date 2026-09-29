@@ -7,11 +7,19 @@ workflow:
   require_user_plan_approval: true
   require_code_review_pass: true
   allow_human_or_external_plan_reviewer: true
-  prefer_independent_agent_or_model: true
+  require_independent_plan_review: true
+  require_independent_code_review: true
+  allow_human_or_external_code_reviewer: true
 implementation:
   prefer_test_first: true
   max_files_per_slice: 8
 review:
+  # Guidance for the host, not automatic model configuration.
+  prefer_capable_different_model: true
+  allow_model_downgrade_for_diversity: false
+  unknown_alternative_fallback: same_model_and_effort_separate_context
+  reviewer_writes: false
+  record_known_model_and_selection_reason: true
   use_actual_diff_for_criteria: true
   require_review_record_in_plan: true
 safety:
