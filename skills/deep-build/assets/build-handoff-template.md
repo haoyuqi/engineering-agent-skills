@@ -12,7 +12,7 @@ Use this template only after implementation and the independent review gate fini
 | Check | Command or method | Observed result |
 
 ## Review rounds
-| Round | Blocking | Required | Optional | Resolution |
+| Round | Reviewer/context | Known model/effort and selection reason | Reviewed version | Verdict | Findings/resolution |
 
 ## Known limitations and open decisions
 - <limitation, owner or decision needed>

@@ -3,10 +3,14 @@
 `deep-build` implements a substantial approved change only after a written Plan passes independent review and the user approves that reviewed Plan. Its portable contract is:
 
 ```text
-Plan document → independent Plan Review → report to user → user approves Plan → incremental implementation → Code Review PASS → user acceptance
+Plan document → independent Plan Review → report to user → user approves Plan → incremental implementation → independent Code Review PASS → report to user → user acceptance
 ```
 
-It is host-neutral. An OpenCode/OMO workflow can use separate agents and models; another host can use an external Agent or human reviewer. A same-context self-review never satisfies the Plan Review gate. Report every review result with the Plan path, reviewer context, findings, revisions, risks, and next decision; after PASS, request Plan approval and stop until the user responds. Git delivery, deployment, and remote PR/MR review are outside this skill.
+It is host-neutral. Both review gates require a reviewer who did not author the reviewed version. A separate agent context, another session, an external reviewer, or a human can satisfy this; same-context self-review cannot. Reviewers inspect artifacts read-only; the author makes fixes and requests re-review. Without a reviewer, report `pending external review` rather than claiming PASS.
+
+Prefer a different model only when suitable for the task, never a capability downgrade just for diversity. If alternative capability is unknown, retain the author's model and reasoning effort in a separate context. Record the actual known model/effort and selection reason; do not invent missing metadata. No specific runtime or model is required. The full policy is in [review-criteria.md](references/review-criteria.md).
+
+Report every review result with the Plan path, reviewer context, findings, revisions, risks, and next decision; after Plan PASS, request Plan approval and stop until the user responds. Git delivery, deployment, and remote PR/MR review are outside this skill. Configuration is host guidance only: independence is mandatory, while model diversity is a preference.
 
 ```text
 Use deep-build to implement the approved tenant-scoped export feature across the API and worker.

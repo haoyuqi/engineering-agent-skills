@@ -189,6 +189,56 @@
           ]
         }
       ]
+    },
+    {
+      "id": 7,
+      "prompt": "For each fictional reviewer_scenarios entry, apply deep-build and state the next action. Do not edit files or run tools.",
+      "expected_output": "Independent reviewer selection and gate decisions grounded in available capability, with pending states where review is unavailable.",
+      "files": [
+        "evals/fixtures/review-routing.json"
+      ],
+      "expectations": [
+        {
+          "id": "deep-build-07-01",
+          "type": "observable-output",
+          "assertion": "Choose the established suitable alternative in a separate context; record rationale and known model/effort.",
+          "evidence_sources": [
+            "evals/fixtures/review-routing.json"
+          ]
+        },
+        {
+          "id": "deep-build-07-02",
+          "type": "observable-output",
+          "assertion": "For the unknown lightweight alternative retain author model and effort in a separate context rather than downgrade solely for diversity.",
+          "evidence_sources": [
+            "evals/fixtures/review-routing.json"
+          ]
+        },
+        {
+          "id": "deep-build-07-03",
+          "type": "observable-output",
+          "assertion": "Passing tests and author self-review do not satisfy Code Review; no independent reviewer means pending external review and no completed handoff.",
+          "evidence_sources": [
+            "evals/fixtures/review-routing.json"
+          ]
+        },
+        {
+          "id": "deep-build-07-04",
+          "type": "observable-output",
+          "assertion": "The implementer repairs the Required finding; an independent reviewer inspects the revised version and affected context before PASS, and the result is reported.",
+          "evidence_sources": [
+            "evals/fixtures/review-routing.json"
+          ]
+        },
+        {
+          "id": "deep-build-07-05",
+          "type": "observable-output",
+          "assertion": "Unknown external model metadata is recorded as unknown, not invented or claimed to be a different model.",
+          "evidence_sources": [
+            "evals/fixtures/review-routing.json"
+          ]
+        }
+      ]
     }
   ]
 }
