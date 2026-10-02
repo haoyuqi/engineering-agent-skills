@@ -10,11 +10,13 @@ from __future__ import annotations
 
 import argparse
 import fnmatch
+import hashlib
 import json
 import os
 from pathlib import Path
 import re
 import shutil
+import stat
 import subprocess
 import sys
 import tempfile
@@ -290,6 +292,44 @@ def isolated_audit_environment(directory: Path) -> dict[str, str]:
     return environment
 
 
+def dependency_snapshot(project: dict[str, str], root: Path) -> tuple[dict[str, Any], dict[str, Any]]:
+    """Capture required input bytes without following symlinks; emit only hashes/stat."""
+    manifest_name = "composer.json" if project["ecosystem"] == "composer" else "package.json"
+    paths = {
+        "manifest": root / project["project_path"] / manifest_name,
+        "lockfile": root / project["lockfile_path"],
+    }
+    snapshot: dict[str, Any] = {}
+    lockfile: dict[str, Any] = {}
+    for label, path in paths.items():
+        try:
+            with os.fdopen(os.open(path, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK), "rb") as stream:
+                before = os.fstat(stream.fileno())
+                if not stat.S_ISREG(before.st_mode):
+                    raise ValueError("dependency input is not a regular file")
+                raw = stream.read()
+                after = os.fstat(stream.fileno())
+            def identity(info: os.stat_result) -> tuple[int, ...]:
+                return (info.st_dev, info.st_ino, info.st_mode, info.st_size, info.st_mtime_ns, info.st_ctime_ns)
+            if identity(before) != identity(after) or identity(after) != identity(path.lstat()):
+                raise ValueError("dependency input changed while reading")
+            value = json.loads(raw)
+            if not isinstance(value, dict):
+                raise ValueError("dependency input must be a JSON object")
+        except (OSError, UnicodeDecodeError, json.JSONDecodeError) as error:
+            raise ValueError("dependency input is unreadable or invalid JSON") from error
+        snapshot[label] = {
+            "sha256": hashlib.sha256(raw).hexdigest(),
+            "size": after.st_size,
+            "mtime_ns": after.st_mtime_ns,
+            "ctime_ns": after.st_ctime_ns,
+            "inode": after.st_ino,
+        }
+        if label == "lockfile":
+            lockfile = value
+    return snapshot, lockfile
+
+
 def execute_audit(project: dict[str, str], root: Path, timeout: int) -> dict[str, Any]:
     ecosystem = project["ecosystem"]
     command = command_for(ecosystem)
@@ -302,6 +342,12 @@ def execute_audit(project: dict[str, str], root: Path, timeout: int) -> dict[str
     if shutil.which(command[0]) is None:
         result.update({"status": "tool_missing", "stdout_parse_state": "not-run"})
         return result
+    try:
+        initial_snapshot, lockfile = dependency_snapshot(project, root)
+    except ValueError as error:
+        result.update({"status": "input_snapshot_error", "stdout_parse_state": "not-run", "snapshot_error": str(error)})
+        return result
+    result["input_snapshot"] = initial_snapshot
     with tempfile.TemporaryDirectory(prefix="repository-vulnerability-audit-") as temporary:
         try:
             completed = subprocess.run(
@@ -336,12 +382,18 @@ def execute_audit(project: dict[str, str], root: Path, timeout: int) -> dict[str
     if completed.stderr:
         result["stderr_summary"] = redact_summary(completed.stderr)
     try:
+        final_snapshot, _ = dependency_snapshot(project, root)
+    except ValueError:
+        result.update({"status": "input_changed", "stdout_parse_state": "not-validated", "snapshot_state": "unavailable_after_audit"})
+        return result
+    if final_snapshot != initial_snapshot:
+        result.update({"status": "input_changed", "stdout_parse_state": "not-validated", "snapshot_state": "changed"})
+        return result
+    result["snapshot_state"] = "unchanged"
+    try:
         audit_json = json.loads(completed.stdout)
         if not isinstance(audit_json, dict):
             raise ValueError("expected a JSON object")
-        lockfile = load_json_file(root / project["lockfile_path"])
-        if lockfile is None:
-            raise ValueError("cannot read a valid lockfile JSON object")
         normalized = (
             normalize_composer(lockfile, audit_json, project["project_path"])
             if ecosystem == "composer"
@@ -355,6 +407,13 @@ def execute_audit(project: dict[str, str], root: Path, timeout: int) -> dict[str
                 "parse_error": str(error),
             }
         )
+        return result
+
+    # Finding exits are valid only when supported by a recognized report.
+    supported_codes = {0, 1, 2, 3} if ecosystem == "composer" else {0, 1}
+    reported_issues = bool(normalized["findings"] or normalized.get("non_vulnerability_categories"))
+    if completed.returncode not in supported_codes or (completed.returncode != 0 and not reported_issues):
+        result.update({"status": "execution_error", "stdout_parse_state": "parseable", "parse_error": "exit status is not supported by audit evidence"})
         return result
 
     result.update(

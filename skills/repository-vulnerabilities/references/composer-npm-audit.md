@@ -28,6 +28,29 @@ registry_host, command, exit_code, stdout_parse_state, stderr_summary
 
 Composer can return a finding exit code for advisories or other configured dependency policies. npm audit returns non-zero when vulnerabilities meet its audit threshold. Parse JSON categories before interpreting the code: valid vulnerability output is a completed audit, while abandoned-package-only output is not a vulnerability and malformed/missing JSON or an execution error is a tool failure.
 
+The normalizer rejects error envelopes, missing report categories, and unsupported
+npm report versions (only version 2 is supported). Composer requires `advisories`,
+accepting an empty object or PHP's empty array representation. A parseable JSON
+object alone is not an audit report. The runner accepts exit zero with a valid
+report, npm exit 1 with findings, and Composer exits 1–3 with reported findings
+or policy categories. Unsupported or unexplained exits stay unverified.
+See the [Composer CLI](https://getcomposer.org/doc/03-cli.md#audit),
+[historical Composer exit codes](https://getcomposer.org/changelog/2.8.4), and
+[npm audit documentation](https://docs.npmjs.com/cli/v7/commands/npm-audit/).
+
+Before launching the command, the runner captures the project's manifest and
+lockfile bytes and records hashes and file metadata in `input_snapshot`. It
+normalizes using that captured lockfile only after a matching post-command
+snapshot. Invalid initial inputs produce `input_snapshot_error` without running
+the tool; changed, removed, or unreadable final inputs produce `input_changed`
+without normalized findings. Both count as unverified and require a new run
+after inputs stabilize. No automatic retry or repository write is performed.
+
+These are before/after consistency checks, not a filesystem transaction or a
+sandbox against concurrent malicious changes. They cover the project manifest
+and lockfile, not all workspace/configuration files. Avoid concurrent dependency
+editing during an audit; do not treat snapshot matching as a network-security guarantee.
+
 ## Normalization
 
 Normalize findings to:

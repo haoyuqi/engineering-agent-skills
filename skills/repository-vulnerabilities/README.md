@@ -1,5 +1,11 @@
 # Repository Vulnerabilities
 
+Audit completion requires a recognized report, an exit status supported by its
+evidence, and unchanged project manifest/lockfile snapshots. Error envelopes and
+empty JSON objects are not clean audits. Input drift is reported as unverified;
+rerun after files stabilize. The runner never mixes a completed command's output
+with lockfile versions read from a later changed file.
+
 Scan the current repository's Composer and npm lockfiles, run their read-only audit commands, and verify affected versions against authoritative advisories before recommending action.
 
 ## Quick start
