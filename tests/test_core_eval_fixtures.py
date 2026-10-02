@@ -13,6 +13,7 @@ CORE_FIXTURES = {
         "github-requirement-gap.json": ("pull_request", "acceptance_criteria", "changed_files"),
         "gitlab-middleware.json": ("merge_request", "acceptance_criteria", "surrounding_evidence"),
         "missing-requirements.json": ("pull_request", "requirements_fetch", "changed_files"),
+        "revision-evidence.json": ("repository", "scenarios"),
     },
     "git-change-delivery": {
         "mixed-worktree.json": ("branch", "remote", "changes"),
