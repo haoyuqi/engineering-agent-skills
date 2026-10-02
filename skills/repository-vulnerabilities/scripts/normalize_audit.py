@@ -45,13 +45,18 @@ def composer_versions(lockfile: dict[str, Any]) -> dict[str, dict[str, str]]:
 def normalize_composer(
     lockfile: dict[str, Any], audit: dict[str, Any], project: str
 ) -> dict[str, Any]:
+    if "error" in audit or "errors" in audit:
+        raise ValueError("Composer audit contains an error envelope")
+    if "advisories" not in audit:
+        raise ValueError("Composer audit is missing advisories")
     versions = composer_versions(lockfile)
     findings: list[dict[str, Any]] = []
     warnings: list[str] = []
 
     for audit_key, ignored in (("advisories", False), ("ignored-advisories", True)):
         advisories = audit.get(audit_key, {})
-        if advisories is None:
+        # PHP may encode an empty map as an empty array.
+        if advisories == []:
             advisories = {}
         if not isinstance(advisories, dict):
             raise ValueError(f"Composer audit field {audit_key} must be an object")
@@ -63,7 +68,7 @@ def normalize_composer(
                 warnings.append(f"no lockfile version for advisory package {package_name}")
             for advisory in package_advisories:
                 if not isinstance(advisory, dict):
-                    continue
+                    raise ValueError("Composer advisory must be an object")
                 identifiers = [
                     value
                     for value in (advisory.get("advisoryId"), advisory.get("cve"))
@@ -152,6 +157,10 @@ def npm_versions(lockfile: dict[str, Any]) -> tuple[dict[str, str], dict[str, se
 def normalize_npm(
     lockfile: dict[str, Any], audit: dict[str, Any], project: str
 ) -> dict[str, Any]:
+    if "error" in audit or "errors" in audit:
+        raise ValueError("npm audit contains an error envelope")
+    if "vulnerabilities" not in audit or audit.get("auditReportVersion") != 2:
+        raise ValueError("expected npm audit report version 2 with vulnerabilities")
     node_versions, package_versions = npm_versions(lockfile)
     vulnerabilities = audit.get("vulnerabilities", {})
     if not isinstance(vulnerabilities, dict):
@@ -161,7 +170,9 @@ def normalize_npm(
     warnings: list[str] = []
     for package_name, vulnerability in vulnerabilities.items():
         if not isinstance(vulnerability, dict):
-            continue
+            raise ValueError("npm vulnerability must be an object")
+        if not isinstance(vulnerability.get("nodes", []), list) or not isinstance(vulnerability.get("via", []), list):
+            raise ValueError("npm vulnerability nodes and via must be arrays")
         nodes = [node for node in vulnerability.get("nodes", []) if isinstance(node, str)]
         node_installed_versions = {
             node_versions[node] for node in nodes if node in node_versions
