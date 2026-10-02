@@ -16,7 +16,10 @@ change_request:
   reviewers: []
   assignees: []
 safety:
-  confirm_stage: true
-  confirm_commit: true
-  confirm_push: true
-  confirm_change_request: true
+  # Host guidance only; these values do not authorize writes.
+  authorization_mode: explicit_scope
+  repeat_confirmation_for_unchanged_scope: false
+  honor_step_by_step_requests: true
+  confirm_scope_or_target_changes: true
+  require_specific_high_risk_approval: true
+  preserve_unrelated_staged_changes: true

@@ -7,37 +7,29 @@ compatibility: Requires Git; opening a PR or MR also requires an authenticated G
 
 # Git Change Delivery
 
-Deliver only intended change. Staging, committing, pushing, and opening a PR/MR are separate gates with different targets and recovery costs.
+Deliver within user authorization, without redundant confirmation.
 
 ## Configuration
 
-Use [config.example.yaml](config.example.yaml). Repository instructions and explicit user choices win. Never assume issue keys, labels, reviewers, branch conventions, or provider.
+Use [config.example.yaml](config.example.yaml). Explicit user choices and repository rules win. Configuration never grants permission. Resolve provider and conventions from repository evidence; do not invent issue keys or metadata.
 
-## Confirmation gates
+## Authorization
 
-After showing exact scope, get fresh confirmation for each mutation:
+Record authorized operations, scope, exclusions, target, and stopping point. An explicit commit/push/PR request authorizes that sequence. Commit requests include necessary scoped staging unless limited to already staged changes. Show the resolved plan and proceed without asking again while scope and risk remain unchanged.
 
-1. paths to stage; 2. commit message/hook behavior; 3. remote/branch, upstream or force mode; 4. full PR/MR proposal.
+Partial authorization stays partial: stage-only cannot commit; commit-only cannot push; preparing a PR proposal cannot publish it. A PR-only request uses an existing published branch unless the conversation clearly authorizes delivering the current changes too. Ambiguous “ship it” is not blanket permission. Ask only about material ambiguity or missing authority.
 
-Confirmation of one gate never authorizes the next.
+Honor explicit requests for step-by-step approval or exact-message approval. Broad delivery authorization does not cover force push, hook bypass, history rewriting, target changes, or scope expansion: disclose the exact risk/action and obtain specific approval. An existing specific approval remains valid only for unchanged scope and conditions.
 
 ## Workflow
 
-1. **Inspect.** Read instructions, branch/remotes/upstream, status, diffs, untracked files, and hooks. Classify every path intended, excluded, unrelated, or uncertain.
-2. **Propose staging.** Show paths, purpose, fingerprint. Never default to `git add .`/`-A` in mixed worktrees. Recheck before staging; changed content needs new diff and confirmation. Stage unchanged paths only; show staged diff/status and stop on scope drift.
-3. **Verify and commit.** Run approved checks. Never bypass a failed hook automatically. Offer 2–3 messages from staged diff; commit only after exact message/scope confirmation.
-4. **Push.** Show exact remote ref. Force mode needs separate branch/mode confirmation. Stop before PR/MR if push fails.
-5. **Prepare request.** Detect GitHub/GitLab unless configured; reuse template when present. Propose target, title, body, draft state, labels, reviewers, assignees. Validate labels; never create missing labels implicitly. Create only after full confirmation.
-6. **Verify.** Read back commit SHA, branch, PR/MR reference/state. Load [assets/delivery-report-template.md](assets/delivery-report-template.md) only for final response.
-
-## Rationalizations to reject
-
-- “Ship it authorizes everything.” Staging, commit, push, and PR/MR creation remain separate gates.
-- “`git add .` is faster.” Mixed worktrees require explicit paths.
-- “The hook is unrelated.” Never bypass it automatically.
-- “Force push is the recovery.” Explain ref state before proposing force-with-lease.
-- “Create the missing label.” Provider metadata is a separate mutation.
+1. **Inspect.** Read instructions, branch/remotes/upstream, status, staged/unstaged diffs, untracked files, and hooks. Classify intended, excluded, unrelated, and uncertain changes. Resolve the authorized scope; preserve unrelated pre-staged work. If the index would include uncertain/unrelated content, stop before commit and ask how to isolate it; never silently unstage it.
+2. **Stage.** Show paths, purpose, and fingerprint; recheck before staging. Use explicit paths or selected hunks, never blanket staging in mixed worktrees. Unexpected drift requires inspection; material scope changes need approval. Verify the staged diff matches the authorized change.
+3. **Commit.** Run applicable checks and normal hooks. Derive a message from the staged diff and recent repository history; show it and commit when authorized. Offer alternatives only when requested or convention is materially ambiguous. Hook failure stops delivery; never bypass automatically.
+4. **Push.** Show exact remote/branch and upstream action; push only within authorization. No automatic force mode or target substitution. Stop dependent steps on failure.
+5. **PR/MR.** Check for an existing request; avoid duplicates and report its URL. Use the repository template. Show base/head, title, body, draft state, and requested metadata; create when authorized. Validate labels/reviewers; creating missing labels, adding unrequested reviewers, or modifying an existing request requires separate authority.
+6. **Verify.** Read back commit, remote ref, request URL/state, and worktree. Report completed operations, remaining work, and blockers using [assets/delivery-report-template.md](assets/delivery-report-template.md).
 
 ## Failure behavior
 
-Preserve state and stop at failed gate. Do not restage unrelated work, rewrite commits, change remotes, create duplicates, or switch provider automatically. If provider integration is missing after push, report branch and safe manual compare URL.
+Preserve evidence and state. Never treat a failed or uncertain write as success; inspect remote state before retrying. Do not rewrite history, alter hooks/remotes, or merge automatically. If provider integration fails after push, report the branch and safe manual compare URL.
