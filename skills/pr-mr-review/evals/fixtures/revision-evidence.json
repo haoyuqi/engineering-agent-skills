@@ -1,0 +1,15 @@
+{
+  "fixture_notice": "Fictional independent revision scenarios for offline evaluation only. Symbolic revision and fingerprint labels stand for captured identifiers.",
+  "repository": "example-service",
+  "scenarios": [
+    {"id": "stale-local", "review_head": "head-A", "local_head": "older-L", "local_code": "return store.all();", "pinned_code": "return store.forTenant(auth.tenant_id);", "path": "src/export.py", "final_head": "head-A", "base_unchanged": true},
+    {"id": "dirty-local", "review_head": "head-A", "local_head": "head-A", "dirty": true, "local_code": "return store.forTenant(auth.tenant_id);", "pinned_code": "return store.all();", "path": "src/export.py", "pinned_context": "Authenticated tenant is available; store.all returns every tenant, with no other filter.", "requirement": "Export only the authenticated tenant's records."},
+    {"id": "missing-revision", "review_head": "head-A", "local_head": "older-L", "local_code": "return store.all();", "pinned_context_read": "unavailable", "automatic_fetch_authorized": false},
+    {"id": "head-drift", "initial": {"head": "head-A", "base": "base-A"}, "final": {"head": "head-B", "base": "base-A"}, "reviewed": "head-A", "new_head_read": false},
+    {"id": "base-drift", "initial": {"head": "head-A", "base": "base-A", "diff_start": "start-A"}, "final": {"head": "head-A", "base": "base-B", "diff_start": "start-B"}},
+    {"id": "local-drift", "directory": "example-service/", "head": "local-A", "layers": ["staged", "unstaged", "untracked"], "initial": {"status": " M src/export.py", "fingerprint": "content-A"}, "final": {"status": " M src/export.py", "fingerprint": "content-B"}, "fingerprint_method": "digest of selected path, status, mode and contents across index/worktree/untracked plus inspected context", "excluded": ["ignored/private files"]},
+    {"id": "failed-recheck", "review_head": "head-A", "initial_base": "base-A", "final_read": "provider timeout", "retained_evidence": true},
+    {"id": "stable-local", "directory": "example-service/", "head": "local-A", "layers": {"staged": ["src/a.py"], "unstaged": ["src/b.py"], "untracked": ["tests/new_case.py"]}, "initial_fingerprint": "content-C", "final_fingerprint": "content-C", "fingerprint_method": "digest of selected path, status, mode and contents across index/worktree/untracked plus inspected context", "excluded": ["ignored/private files"], "capture_time": "2026-01-01T10:00:00Z", "recheck_time": "2026-01-01T10:05:00Z", "checks": "not run"},
+    {"id": "base-ref-only", "directory": "example-service/", "requested_scope": "compare release through HEAD only", "resolved_base": "release-A", "resolved_head": "head-A", "diff": "release-A..head-A", "dirty_unselected": ["src/unrelated.py"], "final_endpoints_unchanged": true}
+  ]
+}

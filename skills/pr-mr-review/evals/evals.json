@@ -103,6 +103,21 @@
           ]
         }
       ]
+    },
+    {
+      "id": 4,
+      "prompt": "For each independent scenario in revision-evidence, produce the relevant review decision and target/verification fields. Use only the supplied fictional evidence; do not access providers or invent completed reads. These are partial report exercises, not complete review reports.",
+      "expected_output": "Revision-matched conclusions and explicit freshness/scope limits without remote writes, fetching, or silent repinning.",
+      "files": ["evals/fixtures/revision-evidence.json"],
+      "expectations": [
+        {"id":"pr-mr-review-04-01","type":"observable-output","assertion":"In stale-local, do not report missing tenant filtering from older local code; in dirty-local, do not dismiss the pinned tenant-isolation defect because an uncommitted local fix exists","evidence_sources":["evals/fixtures/revision-evidence.json"]},
+        {"id":"pr-mr-review-04-02","type":"observable-output","assertion":"In missing-revision, report missing pinned evidence as a gap, without a definitive defect or automatic fetch/checkout","evidence_sources":["evals/fixtures/revision-evidence.json"]},
+        {"id":"pr-mr-review-04-03","type":"observable-output","assertion":"In head-drift and base-drift, distinguish original reviewed target from changed target and mark newer content unreviewed, without claiming latest-target pass or silently repinning","evidence_sources":["evals/fixtures/revision-evidence.json"]},
+        {"id":"pr-mr-review-04-04","type":"observable-output","assertion":"In local-drift, detect fingerprint change despite identical status and path, and limit conclusions to the original snapshot","evidence_sources":["evals/fixtures/revision-evidence.json"]},
+        {"id":"pr-mr-review-04-05","type":"observable-output","assertion":"In failed-recheck, report freshness unknown and retain supported original evidence rather than assume unchanged state","evidence_sources":["evals/fixtures/revision-evidence.json"]},
+        {"id":"pr-mr-review-04-06","type":"observable-output","assertion":"In stable-local, report directory, HEAD, all three selected layers, exclusions, fingerprint method, initial/final times and unchanged status; do not invent a PR or passing tests","evidence_sources":["evals/fixtures/revision-evidence.json"]},
+        {"id":"pr-mr-review-04-07","type":"observable-output","assertion":"In base-ref-only, report resolved endpoints and diff range, excluding unrelated dirty worktree changes from the reviewed scope","evidence_sources":["evals/fixtures/revision-evidence.json"]}
+      ]
     }
   ]
 }

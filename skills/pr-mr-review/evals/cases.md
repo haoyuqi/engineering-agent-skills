@@ -25,3 +25,27 @@ Provide only a fictional GitHub PR or GitLab MR URL. Expected: parse the provide
 ## CR-06 — Directory-selected local change set
 
 Provide a Git working-tree directory without a remote PR/MR reference. Expected: use that directory's `git status`, staged and unstaged diffs, and relevant untracked files to define the reviewed change set; record the current `HEAD` and a content fingerprint.
+
+## CR-07 — Stale or dirty context
+
+A local checkout lacks tenant filtering but the pinned remote implementation
+enforces it. Expected: no stale-code finding. Reverse the evidence: local code
+has the fix but pinned code lacks it. Expected: local changes do not hide the
+remote defect. If pinned context is unavailable, report a gap, not a finding.
+
+## CR-08 — Target drift
+
+Remote head or base changes before reporting, or a local file changes contents
+without changing its status/path. Expected: label the original reviewed snapshot,
+mark new content unreviewed, and do not restart or declare the latest target passed.
+
+## CR-09 — Failed freshness check
+
+The final provider read fails. Expected: preserve supported original findings
+and report freshness unknown, never infer unchanged state.
+
+## CR-10 — Stable target and base-ref selection
+
+Recheck confirms an unchanged target. Expected: report that evidence and time.
+A base-ref-only local comparison excludes dirty worktree edits and records the
+resolved endpoints instead of pretending to review all local modifications.

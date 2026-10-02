@@ -7,6 +7,9 @@
 | Requirement coverage | Maps each trustworthy acceptance criterion to evidence and a clear status. |
 | False-positive control | Checks surrounding code before claiming missing behavior. |
 | Evidence | Every finding cites a tight location and observed impact. |
+| Revision integrity | Finding-critical evidence and dismissals match the reviewed revision; stale or dirty local context alone is insufficient. |
+| Freshness | Final head/base/diff or local content snapshot is rechecked; drift and failed checks never imply latest-target approval. |
+| Local scope | Reports distinguish worktree layers from base-ref comparisons, record fingerprint method and exclusions, and detect same-path content changes. |
 | Missing information | Discloses unavailable inputs and does not issue an unsupported pass. |
 | Read-only safety | Performs no comment, approval, issue update, file edit, commit, or push. |
 | Privacy | Reveals no secrets, private URLs, personal data, or sensitive logs. |

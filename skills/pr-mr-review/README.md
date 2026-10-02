@@ -20,6 +20,20 @@ Copy or adapt [config.example.yaml](config.example.yaml) only when auto-detectio
 
 The report contains a verdict, severity-ranked findings, acceptance-criteria coverage, verification gaps, and evidence locations. It never posts comments or approvals.
 
+Remote findings use the pinned revision: stale or dirty local files help with
+orientation but cannot prove or dismiss a defect without checking the relevant
+revision. Missing revision evidence remains a verification gap.
+
+Local reports identify the directory, HEAD, selected staged/unstaged/untracked
+changes, exclusions, and a reproducible content fingerprint. Base-ref comparisons
+record resolved commits and exclude working-tree edits unless requested.
+
+Before reporting, the Skill rechecks the remote target or local snapshot. If it
+changed, findings remain scoped to the original snapshot and newer content is
+unreviewed. A failed recheck means freshness is unknown, not that the latest
+version passed. No automatic fetching, branch switching, or repeated restarting
+is performed.
+
 ## Safety
 
 All providers are read-only by default. Any later request to comment, approve, or modify external state requires a separate confirmation containing the exact target and proposed action.
