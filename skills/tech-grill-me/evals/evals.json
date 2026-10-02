@@ -4,12 +4,12 @@
   "evals": [
     {
       "id": 1,
-      "prompt": "Use the fictional topic-session fixture to run a question-led technical learning session.",
+      "prompt": "Use the fictional topic-session fixture to simulate the supplied answer and retry turns in a question-led learning session. Show feedback at each turn without inventing further user answers.",
       "expected_output": "A one-question-at-a-time session that uses the confirmed dimensions, gives at most one directional retry hint, and records the outcome.",
       "files": ["evals/fixtures/topic-session.json"],
       "expectations": [
         {"id":"tech-grill-me-01-01","type":"observable-output","assertion":"The response states the confirmed topic dimensions before questioning and asks only one question at a time","evidence_sources":["evals/fixtures/topic-session.json"]},
-        {"id":"tech-grill-me-01-02","type":"observable-output","assertion":"A partial answer receives one directional hint and one retry without revealing the answer","evidence_sources":["evals/fixtures/topic-session.json"]}
+        {"id":"tech-grill-me-01-02","type":"observable-output","assertion":"The initial partial answer receives one directional hint and one retry without revealing the answer; the supplied retry is accepted without requiring unasked database-specific details","evidence_sources":["evals/fixtures/topic-session.json"]}
       ]
     },
     {
@@ -64,13 +64,27 @@
     },
     {
       "id": 7,
-      "prompt": "Use the fictional codebase-orientation fixture to help a user learn the selected codebase area.",
-      "expected_output": "An evidence-linked map of a confirmed entire repository, delivered in visible batches and followed by one question at a time.",
+      "prompt": "Use the fictional codebase-orientation fixture to give the next progress response. Only the supplied first batch has been read; do not invent remaining source contents or completed reads.",
+      "expected_output": "An evidence-linked partial map, visible pending coverage, and continuation of reading before any learning question.",
       "files": ["evals/fixtures/codebase-orientation.json"],
       "expectations": [
-        {"id":"tech-grill-me-07-01","type":"observable-output","assertion":"The response accepts the confirmed entire repository and states visible batch coverage rather than silently truncating it","evidence_sources":["evals/fixtures/codebase-orientation.json"]},
+        {"id":"tech-grill-me-07-01","type":"observable-output","assertion":"The response accepts the explicit entire-repository scope without reconfirming it and states payment coverage and pending reporting coverage","evidence_sources":["evals/fixtures/codebase-orientation.json"]},
         {"id":"tech-grill-me-07-02","type":"observable-output","assertion":"Map items report observation, inference, or unknown and cite the fixture's file and symbol evidence","evidence_sources":["evals/fixtures/codebase-orientation.json"]},
-        {"id":"tech-grill-me-07-03","type":"observable-output","assertion":"The response asks one question from the reported codebase map rather than only giving a passive summary","evidence_sources":["evals/fixtures/codebase-orientation.json"]}
+        {"id":"tech-grill-me-07-03","type":"observable-output","assertion":"The response does not ask a learning question or claim complete coverage while reporting remains unread; it identifies reading that batch as the next step","evidence_sources":["evals/fixtures/codebase-orientation.json"]}
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "For each independent scenario in learning-boundaries, show the next assistant response using only supplied evidence; simulate no reads or user replies.",
+      "expected_output": "Responses distinguish complete, blocked, ambiguous, and explicitly interleaved reading; answer feedback uses only the stated question.",
+      "files": ["evals/fixtures/learning-boundaries.json"],
+      "expectations": [
+        {"id":"tech-grill-me-08-01","type":"observable-output","assertion":"For complete, report coverage and exclusions, cite the supplied map evidence, then ask exactly one learning question without scope reconfirmation","evidence_sources":["evals/fixtures/learning-boundaries.json"]},
+        {"id":"tech-grill-me-08-02","type":"observable-output","assertion":"For blocked, disclose unreadable reporting and ask about reduced scope without claiming complete coverage or starting a learning question","evidence_sources":["evals/fixtures/learning-boundaries.json"]},
+        {"id":"tech-grill-me-08-03","type":"observable-output","assertion":"For ambiguous-scope, ask for selected components or the entire repository before reading or questioning","evidence_sources":["evals/fixtures/learning-boundaries.json"]},
+        {"id":"tech-grill-me-08-04","type":"observable-output","assertion":"For fair-answer, accept the definition without a retry or weak point for omitted PostgreSQL behavior; any platform question is separate","evidence_sources":["evals/fixtures/learning-boundaries.json"]},
+        {"id":"tech-grill-me-08-05","type":"observable-output","assertion":"For ambiguous-question, clarify the question without marking the user incorrect or recording a knowledge gap","evidence_sources":["evals/fixtures/learning-boundaries.json"]},
+        {"id":"tech-grill-me-08-06","type":"observable-output","assertion":"For interleaved, show payment evidence and pending reporting, then ask one payment question consistent with the explicit order","evidence_sources":["evals/fixtures/learning-boundaries.json"]}
       ]
     }
   ]
