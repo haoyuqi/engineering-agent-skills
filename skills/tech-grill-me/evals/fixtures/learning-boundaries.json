@@ -1,0 +1,11 @@
+{
+  "fixture_notice": "Fictional independent learning scenarios for offline evaluation only.",
+  "scenarios": [
+    {"id": "complete", "request": "Read fictional-service/ fully before questions.", "coverage": {"reviewed": ["payment/", "reporting/"], "pending": [], "unreadable": [], "excluded": ["ignored/private files", "binary assets"]}, "evidence": [{"file": "payment/handler.py", "symbol": "create_payment", "observation": "Delegates receipt creation to payment/service.py:create_receipt."}, {"file": "reporting/summary.py", "symbol": "receipt_summary", "observation": "Reads receipts through payment/store.py:list_receipts."}]},
+    {"id": "blocked", "request": "Read fictional-service/ fully before questions.", "coverage": {"reviewed": ["payment/"], "pending": [], "unreadable": ["reporting/ (permission denied)"]}, "reduced_scope_approved": false},
+    {"id": "ambiguous-scope", "request": "Help me learn fictional-service/.", "scope": null},
+    {"id": "fair-answer", "topic": "PostgreSQL isolation", "question": "What is a dirty read?", "answer": "Reading another transaction's uncommitted changes."},
+    {"id": "ambiguous-question", "question": "Is that safe?", "answer": "Do you mean concurrent reads or crash recovery?"},
+    {"id": "interleaved", "request": "Read payment/ and quiz me before moving to reporting/.", "coverage": {"reviewed": ["payment/"], "pending": ["reporting/"]}, "evidence": [{"file": "payment/handler.py", "symbol": "create_payment", "observation": "Delegates receipt creation to payment/service.py:create_receipt."}]}
+  ]
+}

@@ -1,5 +1,6 @@
 {
   "fixture_notice": "Fictional codebase-orientation fixture for offline evaluation only.",
+  "request": "Read the whole fictional-service repository first, then ask me questions to help me understand it.",
   "confirmed_scope": {"path": "fictional-service/", "mode": "entire_repository"},
   "coverage": {"current_batch": "payment/", "total_batches": 2, "remaining_batch": "reporting/"},
   "map_items": [
@@ -8,5 +9,5 @@
     {"kind": "inference", "claim": "Receipt creation is isolated to keep transport concerns out of persistence.", "evidence": {"file": "fictional-service/payment/service.py", "symbol": "create_receipt"}},
     {"kind": "unknown", "claim": "The retry policy is not established by this batch.", "evidence": {"file": "fictional-service/payment/", "symbol": null}}
   ],
-  "expected_first_question": "Why is receipt creation kept in the service rather than the request handler?"
+  "next_batch_read": {"status": "not_started", "path": "fictional-service/reporting/"}
 }

@@ -27,7 +27,7 @@ User asks for a pull-request review. Expected: do not select this Skill.
 
 ## TG-06 — Code answer
 
-User submits code for the active interview question. Expected: evaluate only
+User submits code for the active learning question. Expected: evaluate only
 its relevant static correctness; do not execute it or turn the response into a
 general code review.
 
@@ -51,4 +51,17 @@ observations, inferences, and unknowns, then ask one question at a time.
 ## TG-10 — Confirmed whole repository
 
 User explicitly selects an entire unfamiliar repository. Expected: accept that
-scope and report map batches with visible coverage; never silently truncate it.
+scope without repeated confirmation and finish reading it before questions;
+report visible pending, excluded, and unreadable areas rather than silently
+truncating. If blocked, obtain a reduced-scope decision before questioning.
+
+## TG-11 — Fair assessment
+
+A correct dirty-read definition omits platform behavior that was not asked.
+Expected: accept it; ask platform behavior separately. An ambiguous question
+requires clarification, not a learner weakness or a consumed retry.
+
+## TG-12 — User-selected interleaving
+
+User asks to learn one module at a time. Expected: map and question that module,
+keep remaining modules visible, then continue in the requested order.
