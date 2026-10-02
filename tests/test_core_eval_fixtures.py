@@ -18,6 +18,7 @@ CORE_FIXTURES = {
         "mixed-worktree.json": ("branch", "remote", "changes"),
         "failing-hook.json": ("branch", "staged_paths", "hook"),
         "high-risk-delivery.json": ("branch", "requested_operation", "available_labels"),
+        "authorization-scenarios.json": ("repository", "scenarios"),
     },
     "requirements-clarification": {
         "combined-mode.json": ("request", "available_skills", "brainstorming_result"),
@@ -71,7 +72,42 @@ def main() -> None:
             assert "fictional" in document["fixture_notice"].lower()
             assert all(key in document for key in required_keys)
 
+    validate_delivery_authorization_contract()
     print("PASS: all Skill evaluations have complete fictional fixture contracts")
+
+
+def validate_delivery_authorization_contract() -> None:
+    """Check policy/fixture wiring only; no claim about actual agent behavior."""
+    directory = ROOT / "skills" / "git-change-delivery"
+    fixture = json.loads((directory / "evals/fixtures/authorization-scenarios.json").read_text())
+    scenarios = {item["id"]: item for item in fixture["scenarios"]}
+    assert len(scenarios) == len(fixture["scenarios"])
+    assert set(scenarios) == {
+        "full-sequence", "commit-only", "stepwise", "target-change",
+        "ambiguous", "proposal-only", "published-branch", "scope-drift",
+    }
+    evaluations = json.loads((directory / "evals/evals.json").read_text())["evals"]
+    scenario_evals = [item for item in evaluations if
+                      "evals/fixtures/authorization-scenarios.json" in item["files"]]
+    for scenario in scenarios:
+        assert sum(f"the {scenario} scenario" in item["prompt"] for item in scenario_evals) == 1
+    assert scenarios["full-sequence"]["index"] == "empty"
+    assert not set(scenarios["full-sequence"]["intended_paths"]) & set(scenarios["full-sequence"]["unrelated_paths"])
+    assert scenarios["target-change"]["proposed_target"] != fixture["repository"]["target"]
+    assert scenarios["ambiguous"]["prior_authorization"] is None
+    assert scenarios["published-branch"]["remote_head_matches_local"] is True
+    hook = json.loads((directory / "evals/fixtures/failing-hook.json").read_text())
+    assert hook["user_bypass_authorization"] is False
+    config = (directory / "config.example.yaml").read_text()
+    for setting in ("authorization_mode: explicit_scope",
+                    "repeat_confirmation_for_unchanged_scope: false",
+                    "honor_step_by_step_requests: true",
+                    "confirm_scope_or_target_changes: true",
+                    "require_specific_high_risk_approval: true",
+                    "preserve_unrelated_staged_changes: true"):
+        assert setting in config
+    for old_key in ("confirm_stage:", "confirm_commit:", "confirm_push:", "confirm_change_request:"):
+        assert old_key not in config
 
 
 if __name__ == "__main__":

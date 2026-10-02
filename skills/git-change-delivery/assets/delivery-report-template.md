@@ -3,6 +3,8 @@
 ```markdown
 # Git Change Delivery
 
+- Authorized operations and stopping point: <user request/context>
+- Scope exclusions or new approvals: <details or none>
 - Staged scope: <paths or skipped>
 - Verification: <checks and observed results>
 - Commit: <SHA and message or skipped>
