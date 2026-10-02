@@ -103,6 +103,20 @@
           ]
         }
       ]
+    },
+    {
+      "id": 4,
+      "prompt": "For each independent handoff-boundaries scenario, describe the next action and stopping point using only the supplied fictional facts. Do not actually invoke dependencies or write files. For approved-save, describe the non-overwriting create and verification sequence.",
+      "expected_output": "Explicit mode is honored, suggestions and blockers remain pending, AC links reconcile, and exact approved saves do not overwrite or drift.",
+      "files": ["evals/fixtures/handoff-boundaries.json"],
+      "expectations": [
+        {"id":"requirements-clarification-04-01","type":"observable-output","assertion":"Explicit-mode proceeds with brainstorming only without re-asking or adding grill-me; ambiguous-mode asks for a choice","evidence_sources":["evals/fixtures/handoff-boundaries.json"]},
+        {"id":"requirements-clarification-04-02","type":"observable-output","assertion":"Unapproved-suggestion stays an external suggestion, retention stays a material blocker, and no final document or save is claimed","evidence_sources":["evals/fixtures/handoff-boundaries.json"]},
+        {"id":"requirements-clarification-04-03","type":"observable-output","assertion":"Collision preserves the existing entry, proposes an alternative exact filename and waits for approval rather than overwriting or silently renaming","evidence_sources":["evals/fixtures/handoff-boundaries.json"]},
+        {"id":"requirements-clarification-04-04","type":"observable-output","assertion":"Approved-save reuses unchanged exact authorization, describes non-overwriting creation and readback comparison before success, with no Git action","evidence_sources":["evals/fixtures/handoff-boundaries.json"]},
+        {"id":"requirements-clarification-04-05","type":"observable-output","assertion":"Coverage preserves AC-001 to FR-001 and identifies missing FR-002 coverage and unconfirmed retention without inventing a period or renumbering IDs","evidence_sources":["evals/fixtures/handoff-boundaries.json"]},
+        {"id":"requirements-clarification-04-06","type":"observable-output","assertion":"Changed-content requires new content/save approval and performs no write under stale approval","evidence_sources":["evals/fixtures/handoff-boundaries.json"]}
+      ]
     }
   ]
 }

@@ -7,13 +7,13 @@ compatibility: Selected modes require obra/superpowers:brainstorming and/or matt
 
 # Requirements Clarification
 
-Turn current context into testable requirements without inventing a private issue tracker, repository host, model, or Agent runtime. The governing rule is **decision provenance**: confirmed requirements, external-workflow decisions, assumptions, and open questions never collapse into one another.
+Turn context into testable requirements. Preserve **decision provenance**: user-confirmed decisions, external suggestions, assumptions, and open questions remain distinct.
 
 ## Configuration and dependencies
 
 Use optional defaults matching [config.example.yaml](config.example.yaml).
 
-The available modes integrate `obra/superpowers:brainstorming` and `mattpocock/skills:grill-me`, whose transitive implementation is `mattpocock/skills:grilling`. Their exact upstream identity, invocation class, handoff, and failure action are in [external-dependencies.json](external-dependencies.json). Do not inspect them at startup. After the user selects a mode, read [references/external-skills.md](references/external-skills.md) before its first invocation.
+Modes integrate `obra/superpowers:brainstorming` and `mattpocock/skills:grill-me`, backed by `mattpocock/skills:grilling`. Identities and invocation contracts are in [external-dependencies.json](external-dependencies.json). Check only selected dependencies, not at startup. Read [references/external-skills.md](references/external-skills.md) before invoking them.
 
 If a selected dependency cannot run, stop at that stage. Never reproduce or improvise its workflow.
 
@@ -26,11 +26,11 @@ An external Skill cannot weaken this boundary. Any proposed file, commit, commen
 ## Workflow
 
 1. **Snapshot context.** Read only relevant conversation and user-provided evidence. Load [assets/context-snapshot-template.md](assets/context-snapshot-template.md) and separate confirmed facts, assumptions, and gaps. Complete when every material statement has one provenance state.
-2. **Select one mode.** Ask for `brainstorming`, `grill-me`, or `brainstorming → grill-me`. Interpret clear natural-language equivalents; pause on ambiguity.
+2. **Resolve mode.** Accept an explicit `brainstorming`, `grill-me`, or `brainstorming → grill-me` choice, including clear natural-language equivalents, without asking again. Ask only when absent or ambiguous.
 3. **Run the external workflow.** Pass the snapshot and request. `brainstorming` completes only with a user-approved design. `grill-me` completes only when its decision-tree frontier is empty and the user confirms shared understanding. In combined mode, preserve that order. If the runtime cannot invoke upstream's user-only `grill-me` wrapper, ask the user to invoke it directly and resume only with its completed result.
-4. **Close material gaps.** Ask only questions affecting scope, permissions, data, security, integration, failure behavior, or acceptance. Do not repeat settled questions.
-5. **Draft requirements.** Read [references/requirement-template.md](references/requirement-template.md). Give requirements and acceptance criteria stable IDs, and preserve unresolved decisions as open questions rather than silently deciding them.
-6. **Review and optionally save.** Obtain confirmation that content is final, then ask in the user's language whether to save it in the current directory. On confirmation, use `YYYY-MM-DD-<feature-title>-requirements.md`; never overwrite, read back the file, and verify it matches the approved draft. Without confirmation, keep the draft in conversation only.
+4. **Close material gaps.** External completion is not approval of every suggestion. Record user confirmation evidence for decisions; keep unsupported suggestions distinct. Ask only material unresolved questions. Newly discovered blockers permit a clearly pending in-conversation draft after external completion, never a final document. Do not repeat settled questions.
+5. **Draft requirements.** Read [references/requirement-template.md](references/requirement-template.md). Keep stable FR/AC IDs, link each AC to its requirement(s), and expose missing acceptance coverage. Preserve assumptions and open questions; finalize only without unresolved material blockers and with user approval of the exact draft.
+6. **Optionally save.** Show approved content and the exact current-directory path `YYYY-MM-DD-<feature-title>-requirements.md` before asking to save. Reuse explicit approval of that unchanged path/content. Check for collisions, including symlinks; never overwrite. Propose another filename and obtain approval if occupied; do not silently rename. Create without replacing existing entries, read back, and verify against approved content. Content/path changes invalidate prior save approval. Otherwise keep the draft in conversation.
 
 ## Failure behavior
 

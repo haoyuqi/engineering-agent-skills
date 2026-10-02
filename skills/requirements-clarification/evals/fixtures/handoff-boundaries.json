@@ -1,0 +1,12 @@
+{
+  "fixture_notice": "Fictional independent requirements handoff scenarios for offline evaluation only.",
+  "scenarios": [
+    {"id":"explicit-mode","request":"Use brainstorming only for a fictional CSV export.","available_skills":["obra/superpowers:brainstorming"]},
+    {"id":"ambiguous-mode","request":"Help clarify the export feature.","mode":null},
+    {"id":"unapproved-suggestion","external_workflow":"completed with approved export design","additional_suggestion":"retain exports forever","user_approval_for_retention":false,"new_material_gap":"retention and deletion policy"},
+    {"id":"collision","draft_status":"final_user_approved","proposed_path":"./2026-01-01-export-requirements.md","path_entry":"existing symlink","save_request":"save it","alternative_approved":false},
+    {"id":"approved-save","draft_status":"final_user_approved","proposed_path":"./2026-01-01-export-requirements.md","content":"FR-001: Export at most 100 rows.\nAC-001 → FR-001: Given 101 rows, export returns at most 100.","exact_path_and_content_approved":true,"path_entry":"absent","readback":"matches approved content"},
+    {"id":"coverage","requirements":[{"id":"FR-001","text":"Export at most 100 rows."},{"id":"FR-002","text":"Delete exports after the confirmed retention period."}],"criteria":[{"id":"AC-001","requirement_ids":["FR-001"],"text":"Given 101 rows, export returns at most 100."}],"retention_period_confirmed":false},
+    {"id":"changed-content","approved_path":"./2026-01-01-export-requirements.md","approved_content":"Export at most 100 rows.","current_content":"Export at most 1000 rows.","new_approval":false}
+  ]
+}

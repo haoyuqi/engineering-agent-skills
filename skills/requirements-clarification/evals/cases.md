@@ -28,7 +28,23 @@ Expected: Stop before the final requirement draft and state that `mattpocock/ski
 
 Prompt: Complete a requirements draft, then reply `save` to the save question.
 
-Expected: Create one dated Markdown file in the current directory only after explicit confirmation; do not modify `.gitignore`, run Git commands, or overwrite an existing file.
+Expected: Show exact dated path and approved content before asking. Create only
+after that approval, without overwriting any existing entry, and verify readback.
+For a collision, propose another filename and wait for approval. Do not modify
+`.gitignore` or run Git commands.
+
+## RC-06 — Explicit mode and pending decisions
+
+An explicit brainstorming-only request proceeds without another selection or
+grill-me. An additional external retention suggestion without user approval
+remains a suggestion. Newly discovered material gaps after external completion
+permit a pending in-conversation draft, not finalization or saving.
+
+## RC-07 — Traceability and stale save approval
+
+Each AC links to existing FR/NFR IDs. Missing acceptance coverage is reported,
+not hidden by invented decisions or renumbering. If approved content changes,
+obtain new approval before saving; never use the old approval for new content.
 
 ## RC-05 — External write boundary
 

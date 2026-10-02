@@ -43,7 +43,7 @@ def main() -> None:
 
     evaluations = json.loads((SKILL / "evals" / "evals.json").read_text(encoding="utf-8"))
     assert evaluations["fixture_backed"] is True
-    assert {item["id"] for item in evaluations["evals"]} == {1, 2, 3}
+    assert {item["id"] for item in evaluations["evals"]} == {1, 2, 3, 4}
     for evaluation in evaluations["evals"]:
         assert evaluation["files"]
         assert len(evaluation["expectations"]) >= 3
