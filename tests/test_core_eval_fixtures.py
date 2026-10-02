@@ -25,6 +25,7 @@ CORE_FIXTURES = {
         "combined-mode.json": ("request", "available_skills", "brainstorming_result"),
         "missing-grilling.json": ("request", "available_skills", "missing_skills"),
         "save-boundary.json": ("request", "draft_status", "requested_git_operation"),
+        "handoff-boundaries.json": ("scenarios",),
     },
     "deep-build": {
         "approved-change.json": ("requirements", "repository_map", "constraints"),

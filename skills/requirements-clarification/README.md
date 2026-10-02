@@ -33,20 +33,31 @@ Optional output and safety defaults are documented in [config.example.yaml](conf
 ```mermaid
 flowchart TD
     A[Current conversation and user-provided context] --> B[Context Snapshot]
-    B --> C{User selects mode}
+    B --> C{Resolve explicit mode or ask if unclear}
     C -->|brainstorming| D[obra/superpowers:brainstorming]
     C -->|grill-me| E[mattpocock/skills:grill-me]
     C -->|brainstorming → grill-me| D
-    D -->|Approved design| E
+    D -->|Approved design, combined mode only| E
+    D -->|Approved design, brainstorming only| F
     E -->|Resolved decisions| F[Requirements draft with FR and AC IDs]
-    F --> G{User confirms content is final}
+    F --> G{Blockers resolved and exact content approved?}
     G -->|No| F
-    G -->|Yes| H{User confirms save?}
+    G -->|Yes| H{Exact available path and content approved for saving?}
     H -->|No| I[Keep draft in conversation]
     H -->|Yes| J[Save one dated Markdown file in current directory]
 ```
 
 The external Skills retain their own dialogue and decision workflow. This Skill adds the requirements-draft step and its explicit local-save confirmation boundary. If an external Skill proposes a write, commit, comment, approval, or any other mutation, this Skill pauses and requires explicit confirmation of that exact action.
+
+An explicit mode is accepted without repeating the mode question. External
+suggestions remain suggestions until supported by user approval. Newly discovered
+material gaps after external completion keep the in-conversation draft pending;
+they cannot become a final document through a completion label alone.
+
+Every AC links to its FR or applicable NFR IDs; missing coverage stays visible.
+Before saving, show the exact path and approved content. An existing file or
+symlink is never overwritten: propose a new name and obtain approval. Recheck
+the destination and use non-overwriting creation, then read back the result.
 
 ## Safety and privacy
 
