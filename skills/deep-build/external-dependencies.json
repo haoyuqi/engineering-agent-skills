@@ -2,6 +2,15 @@
   "schema_version": 1,
   "skill_name": "deep-build",
   "installation_note": "Dependencies are recommended enhancements, not prerequisites. The local Plan and review gates remain mandatory when they are unavailable.",
+  "integration": {
+    "instructions": "references/external-skills.md",
+    "preferred_mode": "native",
+    "permitted_reading_mode": "source-guided",
+    "path_override": "implementation.external_skill_paths",
+    "unavailable_behavior": "declared_fallback_then_stop_if_insufficient",
+    "automatic_installation": false,
+    "caller_exclusive": false
+  },
   "dependencies": [
     {"id": "addyosmani/agent-skills:planning-and-task-breakdown", "install": "npx skills add addyosmani/agent-skills --skill planning-and-task-breakdown", "source_url": "https://github.com/addyosmani/agent-skills", "when": "Writing a substantial Plan", "fallback": "Use the Plan record format in SKILL.md."},
     {"id": "addyosmani/agent-skills:incremental-implementation", "install": "npx skills add addyosmani/agent-skills --skill incremental-implementation", "source_url": "https://github.com/addyosmani/agent-skills", "when": "Implementing multi-file slices", "fallback": "Use the slice rules in SKILL.md."},

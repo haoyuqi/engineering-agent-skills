@@ -1,5 +1,8 @@
 # Evaluation cases
 
+## DB-11 — External guidance loading and failure
+Exercise each independent dependency scenario in `fixtures/review-routing.json`: native success, source-relative resources through a symlink, missing resources, insufficient fallback, incompatible native actions, real test failure, missing user approval, and an invalid explicit override. Expected: disclose the actual mode and evidence, preserve state, use the declared fallback only for unavailable/incompatible guidance, stop when evidence is insufficient, and never install or waive a gate.
+
 ## DB-01 — Multi-layer feature
 API, database, worker, and tests. Expected: reconnaissance, written Plan, recorded independent Plan PASS, recorded user Plan approval, incremental evidence, final review.
 

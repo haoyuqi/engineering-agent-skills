@@ -20,6 +20,12 @@ Use deep-build to implement the approved tenant-scoped export feature across the
 
 The workflow remains usable without these skills because its mandatory gates and concise fallback criteria are included locally. Installing them provides their deeper specialist guidance. Each dependency, trigger, source URL, and fallback is also declared in [external-dependencies.json](external-dependencies.json).
 
+They remain independently discoverable; deep-build does not restrict their callers or manage their distribution. At each applicable phase, use native invocation where supported, or explicitly identified source-guided execution where the host permits it. Read the complete skill and required resources using their real source-relative paths. Reading instructions is not native invocation and does not establish cross-Agent behavior. The [integration policy](references/external-skills.md) defines phase routing, incompatible workflows, partial results, and failure handling.
+
+Supply `implementation.external_skill_paths` in the explicit configuration input to override a dependency's local directory, keyed by its full ID (for example, `addyosmani/agent-skills:code-review-and-quality`). Absolute paths or paths relative to the target repository root are accepted. Otherwise use the host catalog. No package-manager-specific location is required. Keep machine-specific paths out of published configuration.
+
+If invocation or a required resource fails, report it and use the declared local fallback. Stop when that fallback cannot establish the stage's evidence; never silently claim full external execution or automatically install anything. Some upstream references may require files outside the skill subdirectory: an installer that copies only that subdirectory may omit them. A user-provided complete checkout can be used, but deep-build neither repairs the installer nor vendors upstream files. Test failures and review findings still require resolution; fallback cannot manufacture PASS or waive user approval and reviewer independence.
+
 The following are from [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills):
 
 ```bash

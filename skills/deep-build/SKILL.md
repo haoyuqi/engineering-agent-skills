@@ -7,7 +7,9 @@ compatibility: Requires a writable repository, verification tools, and independe
 
 # Deep Build
 
-Require a Plan and two independent PASS gates. Use [config.example.yaml](config.example.yaml) and optional [external-dependencies.json](external-dependencies.json).
+Require a Plan and independent PASS gates. Use [config.example.yaml](config.example.yaml) and [external-dependencies.json](external-dependencies.json).
+
+For external guidance, read [references/external-skills.md](references/external-skills.md). Record mode, evidence, failures, and fallback in the Plan; never waive gates.
 
 ## Boundaries
 
@@ -15,12 +17,12 @@ Implementation authorizes scoped local edits and a new Plan. Do not overwrite Pl
 
 ## Workflow
 
-1. **Recover and map.** Reuse requirements/IDs. Inspect instructions, callers, persistence, authorization, failures, tests, and worktree. Record assumptions and decisions.
+1. **Recover and map.** Reuse requirements/IDs. Inspect instructions, callers, persistence, authorization, failures, tests, and worktree. Record assumptions/decisions.
 2. **Write the Plan.** Create `<plan_directory>/<slug>.md` with the ledger, evidence, scope/non-goals, slices, files/changes, dependencies, checks, risks/rollback, destructive actions, and review criteria. Do not implement first.
 3. **Plan Review and user-approval gate.** Read [references/review-criteria.md](references/review-criteria.md) for independence and model selection. Self-review cannot satisfy either gate. Immediately report each result: Plan path, reviewer context, verdict, blocking findings, revisions, risks, and next decision. On FAIL, stop at `pending user plan decision`; revise only after user direction, then re-review. On PASS, stop at `pending user plan approval`. Implement only after recorded explicit user approval.
 4. **Implement slices.** Follow the approved Plan. Establish observable signals, make small coherent changes, run checks, inspect diffs, and update the ledger. A new interface, migration, dependency, permission change, or out-of-scope caller returns to the Plan gate.
 5. **Code Review gate.** Obtain independent review of the actual diff, surrounding code, and tests using [references/review-criteria.md](references/review-criteria.md). Record criteria, reviewer/model selection, findings, and PASS/FAIL in the Plan; report the result to the user. The implementer fixes Critical/Required findings, then requests independent re-review. Without PASS, do not hand off as complete.
-6. **Hand off.** After both gates pass, fill [assets/build-handoff-template.md](assets/build-handoff-template.md) with observed evidence and ask for user acceptance. Git delivery is separate.
+6. **Hand off.** After both gates pass, fill [assets/build-handoff-template.md](assets/build-handoff-template.md) with evidence; request user acceptance. Git delivery is separate.
 
 ## Plan record format
 
@@ -47,4 +49,4 @@ Critical/Required findings, resolution, and checks: <evidence>
 
 ## Failure behavior
 
-Without an independent reviewer, report `pending external review`; neither implementation nor final completion may bypass its gate. Preserve evidence on tool failure; report unverified work and recovery. If state is stale, the worktree wins. Return failed acceptance to its ledger item.
+Without an independent reviewer, report `pending external review`; never bypass its gate. Preserve tool-failure evidence; report unverified work and recovery. The worktree overrides stale state. Return failed acceptance to its ledger item.

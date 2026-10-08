@@ -17,6 +17,9 @@ Use this template only after implementation and the independent review gate fini
 ## Known limitations and open decisions
 - <limitation, owner or decision needed>
 
+## External guidance
+| Dependency/phase | Source/revision | Native, source-guided, or fallback | Resources checked and observed outcome | Failure reason / remaining gaps |
+
 ## Worktree state
 - Modified paths: <paths>
 - Unrelated changes preserved: <yes/no + details>

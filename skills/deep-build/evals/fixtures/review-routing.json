@@ -3,6 +3,16 @@
   "diff_signals": ["new authenticated API endpoint", "user-controlled filter input", "PostgreSQL index migration", "batch export loop", "240 changed lines"],
   "plan_review": {"verdict": "PASS"},
   "code_review": {"verdict": "pending"},
+  "dependency_scenarios": [
+    {"id": "native-success", "phase": "Code Review", "dependency": "addyosmani/agent-skills:code-review-and-quality", "native_available": true, "required_resources": "complete", "reviewer": "independent-non-author", "invocation_result": "review completed; no blocking findings"},
+    {"id": "source-relative", "phase": "implementation", "dependency": "addyosmani/agent-skills:test-driven-development", "native_available": false, "file_reading_permitted": true, "repository_root": "/fixture/project", "explicit_directory": "../upstream/skills/test-driven-development", "discovered_link": "/fixture/catalog/test-driven-development", "real_source": "/fixture/upstream/skills/test-driven-development/SKILL.md", "required_reference": "../../references/testing-patterns.md", "existing_resource": "/fixture/upstream/references/testing-patterns.md", "plan_pass": true, "user_plan_approval": true},
+    {"id": "missing-reference", "phase": "Code Review", "dependency": "addyosmani/agent-skills:security-and-hardening", "native_available": false, "file_reading_permitted": true, "required_reference": "../../references/security-checklist.md", "resource_exists": false, "local_fallback_evidence": "authorization paths and tests are available for independent inspection"},
+    {"id": "insufficient-fallback", "phase": "Code Review", "dependency": "addyosmani/agent-skills:performance-optimization", "invocation_error": "unavailable", "local_fallback_evidence": "no measurements, representative data, or query plan available", "performance_acceptance_verified": false},
+    {"id": "incompatible-native", "phase": "planning", "dependency": "addyosmani/agent-skills:planning-and-task-breakdown", "native_available": true, "required_native_action": "commit the plan automatically", "can_disable_action": false, "commit_authorized": false},
+    {"id": "work-failure", "phase": "implementation", "dependency": "addyosmani/agent-skills:test-driven-development", "loading_result": "success", "test_result": "FAIL: missing tenant predicate", "partial_changes": ["src/export.ts"], "user_plan_approval": true},
+    {"id": "no-approval", "phase": "planning", "dependency": "addyosmani/agent-skills:planning-and-task-breakdown", "loading_result": "success", "plan_pass": true, "user_plan_approval": false},
+    {"id": "invalid-override", "phase": "planning", "dependency": "addyosmani/agent-skills:planning-and-task-breakdown", "explicit_directory": "../missing-skill", "directory_exists": false, "catalog_alternative_exists": true}
+  ],
   "reviewer_scenarios": [
     {"id": "capable-alternative", "author_model": "fictional-capable-a", "author_effort": "high", "alternative_model": "fictional-capable-b", "alternative_suitability": "established", "separate_context_available": true},
     {"id": "unknown-lightweight", "author_model": "fictional-capable-a", "author_effort": "high", "alternative_model": "fictional-lightweight", "alternative_suitability": "unknown", "separate_context_available": true},
