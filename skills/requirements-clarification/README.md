@@ -34,7 +34,7 @@ Optional output and safety defaults are documented in [config.example.yaml](conf
 flowchart TD
     A[Current conversation and user-provided context] --> B[Context Snapshot]
     B --> C{Resolve explicit mode or ask if unclear}
-    C -->|brainstorming| D[obra/superpowers:brainstorming]
+    C -->|brainstorming| D[Brainstorming requirements-stage adaptation]
     C -->|grill-me| E[mattpocock/skills:grill-me]
     C -->|brainstorming → grill-me| D
     D -->|Approved design, combined mode only| E
@@ -47,7 +47,9 @@ flowchart TD
     H -->|Yes| J[Save one dated Markdown file in current directory]
 ```
 
-The external Skills retain their own dialogue and decision workflow. This Skill adds the requirements-draft step and its explicit local-save confirmation boundary. If an external Skill proposes a write, commit, comment, approval, or any other mutation, this Skill pauses and requires explicit confirmation of that exact action.
+Brainstorming uses a **requirements-stage adaptation**, not a complete upstream run. Read upstream instructions, disclose the boundary, explore intent and alternatives, and return here after explicit approval of the in-conversation design. The architectural save/commit, written-spec review and writing-plans stages are outside this adaptation, not optional steps claimed complete. Bounded work does not proceed to implementation either. See [the integration boundary](references/external-skills.md).
+
+Reading source guidance is not native Skill invocation. If the host only permits the full lifecycle or required guidance is unreadable, stop and report the incompatibility. A reviewed revision does not guarantee compatibility with later automatic updates. The grill-me workflow is unchanged. A later implementation request may use deep-build or another planner; neither is invoked automatically or required to install this Skill.
 
 An explicit mode is accepted without repeating the mode question. External
 suggestions remain suggestions until supported by user approval. Newly discovered

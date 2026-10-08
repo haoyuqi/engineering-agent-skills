@@ -38,7 +38,7 @@ template.
 - `obra/superpowers:brainstorming` — install with `npx skills@1.5.20 add obra/superpowers --skill brainstorming`
 - `mattpocock/skills:grill-me` — this upstream wrapper delegates to `mattpocock/skills:grilling`; install both with `npx skills@1.5.20 add mattpocock/skills --skill grill-me --skill grilling`
 
-It does not replace or impose an additional lifecycle on either external skill. A missing selected dependency stops this skill's workflow without writing its requirement document.
+Brainstorming uses a disclosed requirements-stage adaptation: user-approved design returns to requirements drafting, without design-file writes, commits, writing-plans, or implementation. It is not full upstream completion. The grill-me workflow remains unchanged. Missing guidance or an incompatible host stops the selected stage. See the [integration contract](skills/requirements-clarification/references/external-skills.md).
 
 The commands above use the exact installer version verified by this repository.
 Using a newer installer is possible, but it is outside the recorded packaging

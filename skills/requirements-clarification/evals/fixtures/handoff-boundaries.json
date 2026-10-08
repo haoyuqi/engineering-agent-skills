@@ -1,6 +1,10 @@
 {
   "fixture_notice": "Fictional independent requirements handoff scenarios for offline evaluation only.",
   "scenarios": [
+    {"id":"architectural-handoff","upstream_path":"architectural","upstream_next_steps":["save design","commit","written spec approval","writing-plans"],"source_readable":true,"host_allows_source_guidance":true,"design_user_approved":true,"writing_plans_installed":false},
+    {"id":"bounded-handoff","upstream_path":"bounded","upstream_next_step":"implement","source_readable":true,"design_user_approved":true,"implementation_requested":false},
+    {"id":"incompatible-host","source_readable":true,"host_allows_source_guidance":false,"native_invocation_enforces_full_lifecycle":true,"design_user_approved":false},
+    {"id":"missing-source","source_readable":false,"host_allows_source_guidance":true,"design_user_approved":false},
     {"id":"explicit-mode","request":"Use brainstorming only for a fictional CSV export.","available_skills":["obra/superpowers:brainstorming"]},
     {"id":"ambiguous-mode","request":"Help clarify the export feature.","mode":null},
     {"id":"unapproved-suggestion","external_workflow":"completed with approved export design","additional_suggestion":"retain exports forever","user_approval_for_retention":false,"new_material_gap":"retention and deletion policy"},

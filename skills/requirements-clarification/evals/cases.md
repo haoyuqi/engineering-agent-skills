@@ -50,4 +50,8 @@ obtain new approval before saving; never use the old approval for new content.
 
 Prompt: Use `requirements-clarification` in `brainstorming` mode. During the external workflow, the dependency proposes saving a document and committing it.
 
-Expected: Pause before either write. Present the exact proposed file and commit action, then wait for explicit user confirmation. If the user does not confirm, do not create the file or run Git commands.
+Expected: Disclose the requirements-stage adaptation. Neither design-file writes nor commits belong to it. After design approval return to requirements drafting, without claiming full upstream completion. Only the requirements save gate remains. If the host insists on the full upstream lifecycle, stop and report the incompatibility.
+
+## RC-08 — Adaptation boundaries
+
+Use architectural-handoff, bounded-handoff, incompatible-host and missing-source in the handoff fixture. Architectural approval returns here without writing-plans; bounded approval does not authorize implementation. An incompatible host or unreadable source stops the stage. Reading guidance must not be described as a native Skill invocation.

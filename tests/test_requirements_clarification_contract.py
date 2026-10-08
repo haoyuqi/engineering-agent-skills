@@ -18,6 +18,21 @@ def main() -> None:
     dependencies = {item["id"]: item for item in contract["dependencies"]}
     assert set(dependencies) == {"brainstorming", "grill-me", "grilling"}
     assert dependencies["brainstorming"]["upstream_skill"] == "obra/superpowers:brainstorming"
+    assert dependencies["brainstorming"]["invocation"] == "source_guided_adaptation"
+    adaptation = dependencies["brainstorming"]["integration"]
+    assert adaptation["kind"] == "requirements_stage_adaptation"
+    assert adaptation["native_upstream_completion"] is False
+    assert set(adaptation["excluded"]) == {
+        "design_file_write", "git_commit", "written_spec_review", "writing-plans", "implementation"
+    }
+    assert len(adaptation["reviewed_revision"]) == 40
+    scenarios = json.loads((SKILL / "evals/fixtures/handoff-boundaries.json").read_text())["scenarios"]
+    by_id = {item["id"]: item for item in scenarios}
+    assert by_id["architectural-handoff"]["design_user_approved"] is True
+    assert by_id["architectural-handoff"]["writing_plans_installed"] is False
+    assert by_id["bounded-handoff"]["implementation_requested"] is False
+    assert by_id["incompatible-host"]["host_allows_source_guidance"] is False
+    assert by_id["missing-source"]["source_readable"] is False
     assert dependencies["grill-me"]["upstream_skill"] == "mattpocock/skills:grill-me"
     assert dependencies["grilling"]["upstream_skill"] == "mattpocock/skills:grilling"
     assert dependencies["grill-me"]["requires"] == ["grilling"]

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "skill_name": "requirements-clarification",
-  "reviewed_on": "2026-08-13",
+  "reviewed_on": "2026-10-08",
   "dependencies": [
     {
       "id": "brainstorming",
@@ -10,10 +10,19 @@
       "upstream_repository": "obra/superpowers",
       "upstream_path": "skills/brainstorming",
       "required_for_modes": ["brainstorming", "brainstorming_then_grill_me"],
-      "invocation": "agent_or_user",
+      "invocation": "source_guided_adaptation",
+      "integration": {
+        "kind": "requirements_stage_adaptation",
+        "reviewed_revision": "8ca22dba9a94f28898bbce59f2537ff4d87c747d",
+        "entry": "Read upstream instructions and disclose the requirements-only boundary; do not launch its full lifecycle.",
+        "exit": "Explicit user approval of the in-conversation design returns to requirements-clarification.",
+        "excluded": ["design_file_write", "git_commit", "written_spec_review", "writing-plans", "implementation"],
+        "implementation_handoff": "Later user-requested deep-build or another chosen planning workflow; not an automatic invocation.",
+        "native_upstream_completion": false
+      },
       "install": "npx skills@1.5.20 add obra/superpowers --skill brainstorming",
-      "success_handoff": "A design explicitly approved by the user.",
-      "failure_action": "Stop that mode; do not fabricate an approved design or requirements draft."
+      "success_handoff": "A user-approved in-conversation design from the disclosed requirements-stage adaptation, not full upstream completion.",
+      "failure_action": "Stop if source instructions or required resources are unreadable, approval is missing, or the host cannot honor the adaptation; do not fabricate completion or launch writing-plans."
     },
     {
       "id": "grill-me",
