@@ -43,7 +43,7 @@ def main() -> None:
             "upstream_repository": "obra/superpowers",
             "upstream_path": "skills/brainstorming",
             "required_for_modes": {"brainstorming", "brainstorming_then_grill_me"},
-            "invocation": "agent_or_user",
+            "invocation": "source_guided_adaptation",
         },
         "grill-me": {
             "upstream_skill": "mattpocock/skills:grill-me",

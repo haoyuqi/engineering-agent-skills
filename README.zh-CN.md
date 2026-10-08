@@ -35,7 +35,7 @@ Codex、Claude Code、OpenCode 和 GitHub Copilot 的已验证打包目录、手
 - `obra/superpowers:brainstorming`：安装命令：`npx skills@1.5.20 add obra/superpowers --skill brainstorming`
 - `mattpocock/skills:grill-me`：该上游包装 Skill 会调用 `mattpocock/skills:grilling`；应一起安装：`npx skills@1.5.20 add mattpocock/skills --skill grill-me --skill grilling`
 
-本 Skill 不替代或额外规定这两个外部 Skill 的生命周期。用户选定的依赖缺失时，本 Skill 的流程会停止，且不会写入需求文档。
+brainstorming 采用明确披露的需求阶段适配：用户确认设计后返回需求整理，不写入设计文件、不提交、不进入 writing-plans 或实施；不宣称完整执行上游流程。grill-me 流程保持不变。所需指导缺失或宿主不支持适配时，停止对应阶段。详见[集成契约](skills/requirements-clarification/references/external-skills.md)。
 
 上述命令使用本仓库已验证的安装器固定版本。可以使用更新版本，但在重新运行兼容性测试并更新记录前，不属于已验证的打包范围。
 
