@@ -11,6 +11,9 @@ workflow:
   require_independent_code_review: true
   allow_human_or_external_code_reviewer: true
 implementation:
+  # Explicit local skill-directory overrides, keyed by full dependency ID.
+  # Empty uses the host catalog. This does not configure discovery or install skills.
+  external_skill_paths: {}
   prefer_test_first: true
   max_files_per_slice: 8
 review:

@@ -38,7 +38,18 @@ def main():
     for state in ("pending user plan decision", "pending user plan approval", "pending external review"):
         assert state in skill
 
-    dependencies = json.loads(read("external-dependencies.json"))["dependencies"]
+    manifest = json.loads(read("external-dependencies.json"))
+    integration = manifest["integration"]
+    assert integration["preferred_mode"] == "native"
+    assert integration["permitted_reading_mode"] == "source-guided"
+    assert integration["unavailable_behavior"] == "declared_fallback_then_stop_if_insufficient"
+    assert integration["automatic_installation"] is False
+    assert integration["caller_exclusive"] is False
+    assert integration["path_override"] == "implementation.external_skill_paths"
+    assert "external_skill_paths: {}" in config
+    assert integration["instructions"] in skill
+    assert (SKILL / integration["instructions"]).is_file()
+    dependencies = manifest["dependencies"]
     assert len({item["id"] for item in dependencies}) == len(dependencies)
     for item in dependencies:
         assert item["fallback"] and item["when"]
@@ -66,6 +77,22 @@ def main():
     assert by_id["repair-round"]["reviewer_authored_version"] is False
     assert by_id["repair-round"]["version"] != by_id["repair-round"]["next_version"]
     assert by_id["unknown-metadata"]["model"] is None
+    # Validate the evaluation inputs, not simulated Agent decisions.
+    dependency_cases = json.loads(read("evals/fixtures/review-routing.json"))["dependency_scenarios"]
+    cases = {item["id"]: item for item in dependency_cases}
+    assert len(cases) == len(dependency_cases) == 8
+    assert all(item["dependency"] in {dep["id"] for dep in dependencies} for item in dependency_cases)
+    relative = cases["source-relative"]
+    assert relative["native_available"] is False and relative["file_reading_permitted"] is True
+    assert Path(relative["real_source"]).parent != Path(relative["discovered_link"])
+    assert cases["missing-reference"]["resource_exists"] is False
+    assert cases["insufficient-fallback"]["performance_acceptance_verified"] is False
+    assert cases["incompatible-native"]["commit_authorized"] is False
+    assert cases["work-failure"]["loading_result"] == "success"
+    assert cases["work-failure"]["test_result"].startswith("FAIL")
+    assert cases["no-approval"]["user_plan_approval"] is False
+    assert cases["invalid-override"]["directory_exists"] is False
+    assert 8 in ids
     print("PASS: deep-build policy, ordered gates, and evaluation fixtures are consistent; model behavior not proved")
 
 

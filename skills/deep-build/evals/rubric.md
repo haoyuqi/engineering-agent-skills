@@ -10,4 +10,5 @@
 | Code Review gate | A non-author reviewer inspects actual diff and context read-only; the implementer fixes Critical/Required findings and independent re-review precedes PASS and a user-facing report. |
 | Reviewer selection | Prefer a suitable different model without downgrading for diversity; unknown alternatives fall back to the same model/effort in a separate context. Record known metadata and rationale; unavailable independent review remains pending. |
 | Safety | Preserves unrelated changes and confirms destructive actions. |
+| External guidance | Selects by phase, distinguishes native/source-guided/fallback, resolves resources from their real source, reports failures, and stops when fallback evidence is insufficient. No installation or gate bypass; work failures remain failures. |
 | Delivery boundary | No commit, push, PR/MR, deployment, or external write. |

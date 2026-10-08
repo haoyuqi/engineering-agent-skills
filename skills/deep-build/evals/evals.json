@@ -3,6 +3,22 @@
   "fixture_backed": true,
   "evals": [
     {
+      "id": 8,
+      "prompt": "For each fictional dependency_scenarios entry, apply deep-build and report the loading mode, next action, and remaining gate. Treat entries as independent cases; do not mutate files or install anything.",
+      "expected_output": "Phase-specific integration decisions that distinguish native execution, source-guided execution, fallback, and unresolved evidence without bypassing gates.",
+      "files": ["evals/fixtures/review-routing.json"],
+      "expectations": [
+        {"id": "deep-build-08-01", "type": "observable-output", "assertion": "Use the successful native review evidence without claiming that skill invocation itself proves reviewer independence or user acceptance.", "evidence_sources": ["evals/fixtures/review-routing.json"]},
+        {"id": "deep-build-08-02", "type": "observable-output", "assertion": "In source-relative, resolve the explicit directory against the repository root and the required resource to /fixture/upstream/references/testing-patterns.md from the real source directory; identify source-guided rather than native execution.", "evidence_sources": ["evals/fixtures/review-routing.json"]},
+        {"id": "deep-build-08-03", "type": "observable-output", "assertion": "Report the missing security reference and apply the declared local security fallback with independent inspection, without claiming the external skill completed or installing files.", "evidence_sources": ["evals/fixtures/review-routing.json"]},
+        {"id": "deep-build-08-04", "type": "observable-output", "assertion": "Stop insufficient-fallback at pending external guidance with the missing performance evidence; do not claim PASS.", "evidence_sources": ["evals/fixtures/review-routing.json"]},
+        {"id": "deep-build-08-05", "type": "observable-output", "assertion": "Do not launch the incompatible automatic-commit workflow; disclose the conflict and use the local Plan fallback without a commit or claim of full upstream execution.", "evidence_sources": ["evals/fixtures/review-routing.json"]},
+        {"id": "deep-build-08-06", "type": "observable-output", "assertion": "Preserve the partial change and failing test evidence, diagnose and repair within the approved scope, and rerun checks; do not relabel work failure as skill-loading failure.", "evidence_sources": ["evals/fixtures/review-routing.json"]},
+        {"id": "deep-build-08-07", "type": "observable-output", "assertion": "Report Plan PASS and stop at pending user plan approval in no-approval, regardless of successful external guidance.", "evidence_sources": ["evals/fixtures/review-routing.json"]},
+        {"id": "deep-build-08-08", "type": "observable-output", "assertion": "Report the invalid explicit directory without silently switching to the catalog alternative; disclose the local fallback and its limitations.", "evidence_sources": ["evals/fixtures/review-routing.json"]}
+      ]
+    },
+    {
       "id": 1,
       "prompt": "Use the fictional approved-change fixture to implement the approved change. Do not commit or push.",
       "expected_output": "A scoped implementation handoff with a written Plan, recorded independent Plan PASS and user Plan approval, incremental verification, and a final review, stopping before Git delivery.",

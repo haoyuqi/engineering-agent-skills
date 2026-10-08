@@ -44,6 +44,8 @@ The commands above use the exact installer version verified by this repository.
 Using a newer installer is possible, but it is outside the recorded packaging
 evidence until the compatibility check is rerun and its version is updated.
 
+`deep-build` uses optional external skills by phase, with explicit native/source-guided loading and disclosed local fallbacks. They remain independently usable; missing guidance never bypasses its Plan, independent-review, or user-approval gates. See its [dependency and failure policy](skills/deep-build/README.md#recommended-external-skills).
+
 ## Development disclosure
 
 This repository is developed with AI assistance. Coding Agents help research,
