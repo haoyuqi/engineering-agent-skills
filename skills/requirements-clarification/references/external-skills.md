@@ -52,7 +52,8 @@ Design-file creation, commits, written-spec review and writing-plans are outside
 Stop without a final requirements draft when:
 
 - a selected Skill or `grilling` is unavailable;
-- the runtime cannot invoke it and the user has not completed the direct invocation;
+- the runtime cannot invoke `grill-me` and the user has not completed its direct invocation;
+- the host cannot support the disclosed brainstorming adaptation or its source is unreadable;
 - `brainstorming` has no approved design;
 - `grill-me` has unresolved branches or no user confirmation of shared understanding.
 
