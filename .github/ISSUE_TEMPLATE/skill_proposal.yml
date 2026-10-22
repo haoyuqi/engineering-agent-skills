@@ -1,0 +1,22 @@
+name: Skill proposal
+description: Propose an independently installable engineering Skill.
+title: "[Proposal] "
+labels: [skill-proposal]
+body:
+  - type: markdown
+    attributes:
+      value: Remove secrets, private URLs, personal information, and organization-specific data.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: Describe the recurring problem and who needs help, without private or organization-specific details.
+    validations:
+      required: true
+  - type: textarea
+    id: desired_behavior
+    attributes:
+      label: Desired behavior
+      description: Outline an independent workflow, its safety boundary, and how success and failure can be evaluated with fictional examples.
+    validations:
+      required: true
