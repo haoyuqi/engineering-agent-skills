@@ -1,6 +1,7 @@
 name: Skill proposal
 description: Propose an independently installable engineering Skill.
-title: "skill: "
+title: "[Proposal] "
+labels: [skill-proposal]
 body:
   - type: markdown
     attributes:

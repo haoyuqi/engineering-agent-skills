@@ -1,15 +1,16 @@
 name: Bug report
 description: Report a reproducible problem in a Skill or its bundled scripts.
-title: "bug: "
+title: "[Bug] "
+labels: [bug]
 body:
   - type: markdown
     attributes:
       value: >-
         Remove secrets, tokens, private URLs, and personal information. Attach only sanitized logs or screenshots.
   - type: textarea
-    id: problem
+    id: behavior
     attributes:
-      label: Problem
+      label: Problem and actual behavior
       description: Which Skill is affected, and what happened?
     validations:
       required: true
@@ -24,13 +25,6 @@ body:
     id: expected
     attributes:
       label: Expected behavior
-    validations:
-      required: true
-  - type: textarea
-    id: actual
-    attributes:
-      label: Actual behavior
-      description: Add sanitized logs or screenshots here if useful.
     validations:
       required: true
   - type: textarea
